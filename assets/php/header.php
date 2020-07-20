@@ -8,9 +8,9 @@ if (!isset($page_title)) {
 
 <html lang="en">
 <head>
-    <title>ABI <?php echo $page_title; ?></title>
+    <title>JepsenBrite - <?php echo $page_title; ?></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="<?php echo 'stylesheets/jb.css'; ?>">
+    <link rel="stylesheet" href="">
 </head>
 
 <body>

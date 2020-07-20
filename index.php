@@ -4,6 +4,7 @@
 
 <?php
 echo 'Hello World';
+echo '<p>Hello again!</p>';
 ?>
-
+    <p>Hello again!</p>
 <?php require('assets/php/footer.php');

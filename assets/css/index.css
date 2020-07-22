@@ -1,3 +1,17 @@
+/* Arti */
+.events-container {
+    max-width: 500px;
+    margin: 0 auto;
+    display: grid;
+    row-gap: 10px;
+}
+.events-container > * {
+    display: grid;
+    border: 2px solid gray;
+    grid-template-rows: auto auto auto auto auto;
+}
+
+/* GREG */
 .titreBleu {
     color:blue;
 }

@@ -26,17 +26,14 @@ message :
 <section>
  
 <?php
-try
-{
-$bdd = new PDO('mysql:host=localhost;dbname=test', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-}catch (Exception $e)
-{
-die('Erreur : ' . $e->getMessage());
+try {
+    $bdd = new PDO('mysql:host=localhost;dbname=test', 'root', 'sqlPASS3', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+}catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
 }
 $reponse = $bdd->query('SELECT * FROM TP2_minichat ORDER BY id DESC ');
-while ($donnees = $reponse->fetch())
-{
-?>
+while ($donnees = $reponse->fetch()) {
+    ?>
 <p>
 <strong> <?php echo htmlspecialchars($donnees['pseudo']) ; ?> </strong> :  <?php echo htmlspecialchars($donnees['message']) ; ?> <br/>
 </p>

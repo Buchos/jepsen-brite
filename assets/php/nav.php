@@ -1,8 +1,8 @@
 <nav>
     <ul>
-        <li><a href="header2.php">Home</a></li>
-        <li><a href="categorie.php">categorie</a></li>
-        <li><a href="pastEvent.php">Past-Event</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="/pages/category.php">categorie</a></li>
+        <li><a href="/pages/past.php">Past-Event</a></li>
 
         <div class="formulaire">
         <form method="post" action="login.php">

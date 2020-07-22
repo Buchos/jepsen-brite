@@ -5,8 +5,6 @@
 
 <section class="events-container">
 <?php
-var_dump($today);
-//$bdd = new PDO('mysql:host=localhost;dbname=jepsen-brite', 'root', 'sqlPASS3', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $bdd = new PDO('mysql:host=us-cdbr-east-02.cleardb.com;dbname=heroku_cc256803d465131', 'bd60e8ee909b42', '2db04edd', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $response = $bdd->query('SELECT * FROM `events` ORDER BY `date`');
 while ($data = $response->fetch()) {
@@ -19,6 +17,8 @@ while ($data = $response->fetch()) {
             <img src="" alt="Here will be the image ">' . $data['image'] . '
             <p class="event-description">' . $data['description'] . '</p>
         </article>';
+    } else {
+        echo '<h3 class="event-title">' . 'There is no event to display (yet) for the near future ! \n Do you want to add some ?' . '</h3>';
     }
 }
 ?>

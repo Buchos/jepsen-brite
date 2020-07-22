@@ -1,6 +1,7 @@
 <?php require_once('assets/php/initialize.php') ?>
 <?php $page_title = 'JepsenBrite Homepage' ?>
 <?php require('assets/php/header.php') ?>
+<?php require('assets/php/nav.php')?>
 
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=jepsen-brite', 'root', 'sqlPASS3', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));

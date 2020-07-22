@@ -1,6 +1,7 @@
 <?php require_once('assets/php/initialize.php') ?>
 <?php $page_title = 'JepsenBrite Homepage' ?>
 <?php require('assets/php/header.php') ?>
+<?php require('assets/php/nav.php')?>
 
 <?php
 $today = date('Y-m-j');

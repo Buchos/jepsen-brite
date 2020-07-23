@@ -1,7 +1,7 @@
 <?php require_once('assets/php/initialize.php') ?>
 <?php $page_title = 'Homepage' ?>
-<?php require('assets/php/header.php') ?>
-<?php require('assets/php/nav.php')?>
+<?php require(PHP . '/header.php') ?>
+<?php require(PHP . '/nav.php')?>
 
 <section class="events-container">
 <?php
@@ -27,4 +27,4 @@ while ($data = $response->fetch()) {
 ?>
 </section>
 
-<?php require('assets/php/footer.php');
+<?php require(PHP . '/footer.php');

@@ -17,8 +17,6 @@ while ($data = $response->fetch()) {
             <img src="" alt="Here will be the image ">' . $data['image'] . '
             <p class="event-description">' . $data['description'] . '</p>
         </article>';
-    } else {
-        echo '<h3 class="event-title">' . 'There is no event to display (yet) for the near future ! \n Do you want to add some ?' . '</h3>';
     }
 }
 ?>

@@ -1,15 +1,14 @@
-<?php require_once('assets/php/initialize.php') ?>
+<?php require_once('../assets/php/initialize.php') ?>
 <?php $page_title = 'JepsenBrite Homepage' ?>
-<?php require('assets/php/header.php') ?>
-<?php require('assets/php/nav.php')?>
+<?php require('../assets/php/header.php') ?>
+<?php require('../assets/php/nav.php')?>
 
 <?php
 $today = date('Y-m-j');
-//$bdd = new PDO('mysql:host=localhost;dbname=jepsen-brite', 'root', 'sqlPASS3', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $bdd = new PDO('mysql:host=us-cdbr-east-02.cleardb.com;dbname=heroku_cc256803d465131', 'bd60e8ee909b42', '2db04edd', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $response = $bdd->query('SELECT * FROM `events` ORDER BY `date`');
 while ($data = $response->fetch()) {
-    // display event ONLY if date > today
+    // display echo only if no envent's dates are in the future
     if ($data['date']<$today) {
         echo '<article class="event-entry">
             <h3 class="event-title">' . $data['title'] . '</h3>
@@ -18,10 +17,8 @@ while ($data = $response->fetch()) {
             <img src="" alt="Here will be the image ">' . $data['image'] . '
             <p class="event-description">' . $data['description'] . '</p>
         </article>';
-    } else {
-        echo '<h3 class="event-title">' . 'There is no past event to display! \n Do you want to return to the homepage ?' . '</h3>';
-    }
+    } 
 }
 ?>
 
-<?php require('assets/php/footer.php');
+<?php require('../assets/php/footer.php');

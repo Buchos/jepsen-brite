@@ -1,4 +1,20 @@
-/* Arti */
+/* NAVBAR */
+nav {
+    background-color: #532F8C;
+    height: 60px;
+    margin-bottom: 10px;
+}
+nav > * {
+    color: white;
+    padding: 20px;
+    line-height: 60px;
+    text-decoration: none;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* EVENTS */
 .events-container {
     max-width: 500px;
     margin: 0 auto;
@@ -9,85 +25,25 @@
     display: grid;
     border: 2px solid gray;
     grid-template-rows: auto auto auto auto auto;
+    padding: 0 30px;
+}
+.events-container p {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+.event-author {
+    font-size: smaller;
+}
+.event-description {
+    font-style: italic;
 }
 
-/* GREG */
-.titreBleu {
-    color:blue;
-}
-.titreRouge {
-    color:red;
-}
-
-.backgroundColorRed{
-    background-color:red;
-}
-.backgroundColorBlue{
-    background-color:blue;
-    color:white;
-    border : 2px solid black;
-    padding: 20px 5px 10px 15px;
-}
-
-.backgroundColorGreen{
-    background-color:green;
-    color:white;
-    border : 2px solid black;
-    padding: 20px 5px 10px 15px;
-}
-
-.resultat{
-    padding:10px;
-    margin-top:10px;
-    border: 2px solid black;
-    background-color:rgb(89, 235, 89);
-}
-
-ul {
-    list-style-type: none;
-    margin:0;
-    padding:0;
-    background-color:#283645;
-    overflow:hidden;
-}
-li {
-    float:left;
-}
-li a {
-    color:white;
-    padding:20px;
-    text-decoration: none;
-    display:block;
-}
-
-li a:hover{
-    background-color:#1490D7;
-}
-h1 {
-    color: #1490D7;
-}
-.gauche{
-    float: left;
-}
-.clearB{
-    clear: both;
-}
-
- .formulaire {
-
-   /* display: flex;
-   flex-direction: row;
-   justify-content: flex-end; */
-
-   display: inline-block;
-   color: white;
-   
-}
-fieldset{
-
-    display: inline;
-}
-button{
-
-    display: inline-block;
+/* FOOTER */
+footer {
+    height: 40px;
+    background-color: #532F8C;
+    color: white;
+    line-height: 40px;
+    padding: 0 20px;
+    margin-top: 10px;
 }

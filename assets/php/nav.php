@@ -1,21 +1,6 @@
 <nav>
-    <ul>
-        <li><a href="header2.php">Home</a></li>
-        <li><a href="categorie.php">categorie</a></li>
-        <li><a href="pastEvent.php">Past-Event</a></li>
-
-        <div class="formulaire">
-        <form method="post" action="login.php">
-        <p>
-                
-            <button>LOGIN</button>
-            <button>SUBSCRIBE</button>
-                
-        </p>
-        
-                    
-        </form>
-       
-    </ul>
-
+    <a href="http://becode.local/jepsen-brite/">Home</a>
+    <a href="http://becode.local/jepsen-brite/pages/categories.php">Categories</a>
+    <a href="http://becode.local/jepsen-brite/pages/past.php">Past Events</a>
+    <a href="http://becode.local/jepsen-brite/pages/login.php">LOGIN</a>
 </nav>

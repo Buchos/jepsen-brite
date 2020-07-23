@@ -10,7 +10,7 @@ if (!isset($page_title)) {
 <head>
     <title>JepsenBrite - <?php echo $page_title; ?></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="http://becode.local/jepsen-brite/assets/css/index.css">
 </head>
 
 <body>

@@ -3,13 +3,13 @@
 <?php require(PHP . '/header.php') ?>
 <?php require(PHP . '/nav.php')?>
 
-<h2>Categories</h2>
+<h2>Upcoming Events by Categories</h2>
 <ul>
     <?php
     $bdd = new PDO('mysql:host=us-cdbr-east-02.cleardb.com;dbname=heroku_cc256803d465131', 'bd60e8ee909b42', '2db04edd', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     $categories = $bdd->query('SELECT * FROM `categories`');
     while ($cats = $categories->fetch()) {
-        echo '<a href="http://becode.local/jepsen-brite/pages/categories.php/?category=' . $cats['Name'] . '"><li>' . $cats['Name'] .'</li></a>';
+        echo '<a href="http://becode.local/jepsen-brite/pages/categories.php/?category=' . $cats['name'] . '"><li>' . $cats['name'] .'</li></a>';
     }
     ?>
 </ul>

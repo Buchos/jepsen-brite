@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Event</title>
-</head>
-<body>
+<?php require_once('../assets/php/initialize.php') ?>
+<?php $page_title = 'Create user' ?>
+<?php require('../assets/php/header.php') ?>
+<?php require('../assets/php/nav.php')?>
  
 <form action="create_post.php" method="post">
 
@@ -82,7 +78,4 @@
 <br>
 </p>
  
-</header>
- 
-<section>
-
+<?php require('../assets/php/footer.php');

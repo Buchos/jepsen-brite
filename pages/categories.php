@@ -10,8 +10,8 @@
     $categories = $bdd->query('SELECT * FROM `categories`');
     while ($cats = $categories->fetch()) {
         $catname = $cats['name'];
-        $catcount = $bdd->prepare('SELECT COUNT(*) AS catcount FROM `events` WHERE `category`= ?'); // `date`>= ? AND
-        $catcount->execute(array($catname));
+        $catcount = $bdd->prepare('SELECT COUNT(*) AS catcount FROM `events` WHERE `category`= ? AND `date` >= ?');
+        $catcount->execute(array($catname, $today));
         $numbofcat = $catcount->fetch();
         echo '<a href="http://becode.local/jepsen-brite/pages/categories.php?category=' . $catname . '"><li>' . $catname . ' - (' . $numbofcat[0] . ')' .'</li></a>';
     }
@@ -28,6 +28,7 @@ if (isset($_GET['category'])) { ?>
         // display event ONLY if date > today
         if ($data['date']>$today) {
             echo '<article class="event-entry">
+        <p class="cat">'. $data['category'] .'</p>
         <h3 class="event-title">' . $data['title'] . '</h3>
         <p class="event-date">' . $data['date'] .'</p>
         <p class="event-author"> Organized by ' . $data['author'] . '</p>

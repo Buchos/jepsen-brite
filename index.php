@@ -1,4 +1,6 @@
 <?php require_once('assets/php/initialize.php') ?>
+<!--$stupidroot corrects path for CSS file for index.php-->
+<?php $stupidroot = ''; ?>
 <?php $page_title = 'Homepage' ?>
 <?php require(PHP . '/header.php') ?>
 <?php require(PHP . '/nav.php')?>

@@ -9,7 +9,11 @@
     $bdd = new PDO('mysql:host=us-cdbr-east-02.cleardb.com;dbname=heroku_cc256803d465131', 'bd60e8ee909b42', '2db04edd', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     $categories = $bdd->query('SELECT * FROM `categories`');
     while ($cats = $categories->fetch()) {
-        echo '<a href="http://becode.local/jepsen-brite/pages/categories.php/?category=' . $cats['name'] . '"><li>' . $cats['name'] .'</li></a>';
+        $catname = $cats['name'];
+        $catcount = $bdd->prepare('SELECT COUNT(*) AS catcount FROM `events` WHERE `category`= ?');
+        $catcount->execute(array($catname));
+        $numbofcat = $catcount->fetch();
+        echo '<a href="http://becode.local/jepsen-brite/pages/categories.php/?category=' . $catname . '"><li>' . $catname . ' - (' . $numbofcat[0] . ')' .'</li></a>';
     }
     ?>
 </ul>

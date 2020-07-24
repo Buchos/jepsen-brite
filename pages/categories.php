@@ -10,10 +10,10 @@
     $categories = $bdd->query('SELECT * FROM `categories`');
     while ($cats = $categories->fetch()) {
         $catname = $cats['name'];
-        $catcount = $bdd->prepare('SELECT COUNT(*) AS catcount FROM `events` WHERE `category`= ?');
+        $catcount = $bdd->prepare('SELECT COUNT(*) AS catcount FROM `events` WHERE `category`= ?'); // `date`>= ? AND
         $catcount->execute(array($catname));
         $numbofcat = $catcount->fetch();
-        echo '<a href="http://becode.local/jepsen-brite/pages/categories.php/?category=' . $catname . '"><li>' . $catname . ' - (' . $numbofcat[0] . ')' .'</li></a>';
+        echo '<a href="http://becode.local/jepsen-brite/pages/categories.php?category=' . $catname . '"><li>' . $catname . ' - (' . $numbofcat[0] . ')' .'</li></a>';
     }
     ?>
 </ul>

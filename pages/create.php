@@ -3,4 +3,4 @@
 <?php require(PHP . '/header.php') ?>
 <?php require(PHP . '/nav.php')?>
 
-<?php require(PHP . '/footer.php');
+<?php require(PHP . '/footer.php')?>

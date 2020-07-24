@@ -1,1 +1,48 @@
 <?php
+session_start();
+ 
+$bdd = new PDO('mysql:host=us-cdbr-east-02.cleardb.com;dbname=heroku_cc256803d465131', 'bd60e8ee909b42', '2db04edd', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+ 
+if(isset($_POST['formconnexion'])) {
+   $mailconnect = htmlspecialchars($_POST['mail']);
+   $mdpconnect = password_hash($_POST['password']);
+   if(!empty($mailconnect) AND !empty($mdpconnect)) {
+      $requser = $bdd->prepare("SELECT * FROM users WHERE password = ? AND mail = ?");
+      $requser->execute(array($mdpconnect, $mailconnect));
+      $userexist = $requser->rowCount();
+      if($userexist == 1) {
+         $userinfo = $requser->fetch();
+         $_SESSION['id'] = $userinfo['id'];
+         $_SESSION['username'] = $userinfo['username'];
+         $_SESSION['mail'] = $userinfo['mail'];
+         header("Location: profile.php?id=".$_SESSION['id']);
+      } else {
+         $erreur = "Mauvais mail ou mot de passe !";
+      }
+   } else {
+      $erreur = "Tous les champs doivent être complétés !";
+   }
+}
+?>
+<?php require_once('../assets/php/initialize.php') ?>
+<?php $page_title = 'Log In' ?>
+<?php require('../assets/php/header.php') ?>
+<?php require('../assets/php/nav.php')?>
+
+      <div align="center">
+         <h2>Connexion</h2>
+         <br /><br />
+         <form method="POST" action="">
+            <input type="email" name="mailconnect" placeholder="Mail" />
+            <input type="password" name="mdpconnect" placeholder="Mot de passe" />
+            <br /><br />
+            <input type="submit" name="formconnexion" value="Se connecter !" />
+         </form>
+         <?php
+         if(isset($erreur)) {
+            echo '<font color="red">'.$erreur."</font>";
+         }
+         ?>
+      </div>
+
+<?php require('../assets/php/footer.php');

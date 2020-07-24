@@ -46,12 +46,7 @@ if(isset($_POST['forminscription'])) {
 ?>
 
 
-<html>
-   <head>
-      <title>Create user</title>
-      <meta charset="utf-8">
-   </head>
-   <body>
+
       <div align="center">
          <h2>Inscription</h2>
          <br /><br />
@@ -112,6 +107,5 @@ if(isset($_POST['forminscription'])) {
          }
          ?>
       </div>
-   </body>
-</html>
+
 <?php require('../assets/php/footer.php');

@@ -9,8 +9,8 @@ if(isset($_POST['forminscription'])) {
    $username = htmlspecialchars($_POST['username']);
    $mail = htmlspecialchars($_POST['mail']);
    $mail2 = htmlspecialchars($_POST['mail2']);
-   $password = sha1($_POST['password']);
-   $password2 = sha1($_POST['password2']);
+   $password = password_hash($_POST['password']);
+   $password2 = password_hash($_POST['password2']);
    if(!empty($_POST['username']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['password']) AND !empty($_POST['password2'])) {
       $usernamelength = strlen($username);
       if($usernamelength <= 255) {

@@ -1,6 +1,6 @@
 <nav>
     <ul>
-        <li><a href="header2.php">Home</a></li>
+        <li><a href="header.php">Home</a></li>
         <li><a href="categorie.php">categorie</a></li>
         <li><a href="pastEvent.php">Past-Event</a></li>
 
@@ -8,7 +8,7 @@
         <form method="post" action="login.php">
         <p>
                 
-            <button>LOGIN</button>
+            <button class="btn">LOGIN</button>
             <button>SUBSCRIBE</button>
                 
         </p>

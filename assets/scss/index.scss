@@ -28,7 +28,7 @@ nav {
     background-color: $primary;
     height: 60px;
 }
-nav > * {
+nav a {
     color: white;
     padding: 15px;
     height: 60px;
@@ -42,10 +42,57 @@ nav a:hover {
     background-color: $secondary;
 }
 
+// DROPDOWN MENU
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 70px;
+}
+
+.dropdown-content a {
+    color: $primary;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: $primary;
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    background-color: $secondary;
+}
+
+.dropdown:hover .dropbtn {
+    color: $primary;
+    background-color: $secondary;
+}
+
 // EVENTS - CONTAINER
 .events-container {
     width: 600px;
-    height: auto;
+    height: 800px;
     margin: 0 auto;
     display: grid;
     row-gap: 10px;
@@ -54,7 +101,7 @@ nav a:hover {
 }
 .events-container > * {
     display: grid;
-    grid-template-rows: repeat(5, auto);
+    grid-auto-rows: min-content;
     background-color: rgba(255, 255, 255, 0.897);
     color: $primary;
     padding: 25px;

@@ -384,7 +384,7 @@ nav {
   height: 60px;
 }
 
-nav > * {
+nav a {
   color: white;
   padding: 15px;
   height: 60px;
@@ -399,9 +399,56 @@ nav a:hover {
   background-color: #ede2ff;
 }
 
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 70px;
+}
+
+.dropdown-content a {
+  color: #532F8C;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #532F8C;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  background-color: #ede2ff;
+}
+
+.dropdown:hover .dropbtn {
+  color: #532F8C;
+  background-color: #ede2ff;
+}
+
 .events-container {
   width: 600px;
-  height: auto;
+  height: 800px;
   margin: 0 auto;
   display: -ms-grid;
   display: grid;
@@ -413,8 +460,8 @@ nav a:hover {
 .events-container > * {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (auto)[5];
-      grid-template-rows: repeat(5, auto);
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
   background-color: rgba(255, 255, 255, 0.897);
   color: #532F8C;
   padding: 25px;

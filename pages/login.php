@@ -4,11 +4,11 @@ session_start();
 $bdd = new PDO('mysql:host=us-cdbr-east-02.cleardb.com;dbname=heroku_cc256803d465131', 'bd60e8ee909b42', '2db04edd', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
  
 if(isset($_POST['formconnexion'])) {
-   $mailconnect = htmlspecialchars($_POST['mail']);
-   $mdpconnect = password_hash($_POST['password']);
-   if(!empty($mailconnect) AND !empty($mdpconnect)) {
-      $requser = $bdd->prepare("SELECT * FROM users WHERE password = ? AND mail = ?");
-      $requser->execute(array($mdpconnect, $mailconnect));
+   $usernameconnect = htmlspecialchars($_POST['usernameconnect']);
+   $mdpconnect = sha1($_POST['mdpconnect']);
+   if(!empty($usernameconnect) AND !empty($mdpconnect)) {
+      $requser = $bdd->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+      $requser->execute(array($usernameconnect, $mdpconnect));
       $userexist = $requser->rowCount();
       if($userexist == 1) {
          $userinfo = $requser->fetch();
@@ -25,15 +25,14 @@ if(isset($_POST['formconnexion'])) {
 }
 ?>
 <?php require_once('../assets/php/initialize.php') ?>
-<?php $page_title = 'Log In' ?>
+<?php $page_title = 'LOG IN' ?>
 <?php require('../assets/php/header.php') ?>
 <?php require('../assets/php/nav.php')?>
-
       <div align="center">
          <h2>Connexion</h2>
          <br /><br />
          <form method="POST" action="">
-            <input type="email" name="mailconnect" placeholder="Mail" />
+            <input type="" name="usernameconnect" placeholder="Username" />
             <input type="password" name="mdpconnect" placeholder="Mot de passe" />
             <br /><br />
             <input type="submit" name="formconnexion" value="Se connecter !" />
@@ -44,5 +43,4 @@ if(isset($_POST['formconnexion'])) {
          }
          ?>
       </div>
-
-<?php require('../assets/php/footer.php');
+      <?php require('../assets/php/footer.php');?>

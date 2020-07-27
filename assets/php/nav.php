@@ -1,5 +1,5 @@
         <nav>
-            <a href="http://becode.local/jepsen-brite/">Home</a>
+            <a href="<?php echo $stupidroot?>">Home</a>
             <div class="dropdown">
                 <button class="dropbtn">Categories</button>
                 <div class="dropdown-content">
@@ -15,7 +15,7 @@
                     <a href="<?php echo $stupidroot;?>pages/categories.php?category=other">other</a>
                 </div>
             </div>
-            <a href="http://becode.local/jepsen-brite/pages/past.php">Past Events</a>
-            <a href="http://becode.local/jepsen-brite/pages/login.php">LOGIN</a>
+            <a href="<?php echo $stupidroot?>pages/past.php">Past Events</a>
+            <a href="<?php echo $stupidroot?>pages/login.php">LOGIN</a>
         </nav>
         <section class="main-grid">

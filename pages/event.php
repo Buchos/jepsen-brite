@@ -22,7 +22,7 @@ while ($data = $response->fetch()) {
         <p class="event-author"> Organized by ' . $data['author'] . '</p>
         <img src="" alt="Here will be the image ">' . $data['image'] . '
         <p class="event-description">' . $data['description'] . '</p>
-        <div class="btn"><a href="deleted.php">Delete Event</a></div>
+        
     </article>';
 } ?>
 <!--    FIN DE : VIEW EVENT-->

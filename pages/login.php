@@ -7,7 +7,7 @@
 
 if (isset($_POST['formconnexion'])) {
     $usernameconnect = htmlspecialchars($_POST['usernameconnect']);
-    $mdpconnect = ($_POST['mdpconnect']);
+    $mdpconnect = sha1($_POST['mdpconnect']);
     var_dump($usernameconnect);
     var_dump($mdpconnect);
     if (!empty($usernameconnect) and !empty($mdpconnect)) {
@@ -15,11 +15,11 @@ if (isset($_POST['formconnexion'])) {
         $requser->execute(array($usernameconnect, $mdpconnect));
         $userexist = $requser->rowCount();
         if ($userexist == 1) {
-             $userinfo = $requser->fetch();
-             $_SESSION['id'] = $userinfo['id'];
-             $_SESSION['username'] = $userinfo['username'];
-             $_SESSION['mail'] = $userinfo['mail'];
-             header("Location: profile.php?id=".$_SESSION['id']);
+            $userinfo = $requser->fetch();
+            $_SESSION['id'] = $userinfo['id'];
+            $_SESSION['username'] = $userinfo['username'];
+            $_SESSION['mail'] = $userinfo['mail'];
+            header("Location: profile.php?id=".$_SESSION['id']);
         } else {
             $erreur = "Mauvais mail ou mot de passe !";
         }
@@ -44,5 +44,6 @@ if (isset($_POST['formconnexion'])) {
     }
     ?>
 </div>
+
 
 <?php require('../assets/php/footer.php');?>

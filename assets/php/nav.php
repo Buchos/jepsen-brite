@@ -16,6 +16,9 @@
                 </div>
             </div>
             <a href="<?php echo $stupidroot?>pages/past.php">Past Events</a>
-            <a href="<?php echo $stupidroot?>pages/login.php">LOGIN</a>
+            <a href="<?php echo $stupidroot?>pages/login.php">Log In</a>
+            <a href="<?php echo $stupidroot?>pages/new_user.php">SIGN UP</a>
+            <a href="<?php echo $stupidroot?>pages/profile.php?id="<?php $_SESSION['id'];?>">Your Profile</a>
+            <a href="<?php echo $stupidroot?>pages/create.php">Create New Event</a>
         </nav>
         <section class="main-grid">

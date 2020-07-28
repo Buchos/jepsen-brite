@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php
 // Effectuer ici la requête qui insère le message 
 
@@ -12,7 +14,7 @@ die('Erreur : ' . $e->getMessage());
 $require = $bdd->prepare('INSERT INTO events(title, author, date, time, image , description, category) VALUES(:title, :author, :date, :time, :image , :description, :category)');
 $require->execute(array(
 'title' => $_POST['title'],
-'author' => $_POST['author'],
+'author' => $_SESSION['author'],
 'date' => $_POST['date'],
 'time' => $_POST['time'],
 'image' => $_POST['image'],
@@ -23,5 +25,5 @@ $require->execute(array(
 
 
 // Puis rediriger vers l'index.php comme ceci : 
-header('Location: index.php');
+header('Location: ../index.php');
 ?>

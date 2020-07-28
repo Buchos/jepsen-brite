@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php require_once('../assets/php/initialize.php') ?>
 <?php $page_title = 'Create user' ?>
 <?php require('../assets/php/header.php') ?>

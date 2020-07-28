@@ -1,8 +1,3 @@
-<?php
-session_start();
- 
-?>
-
 <?php require_once('../assets/php/initialize.php') ?>
 <?php $page_title = 'LOG IN' ?>
 <?php require('../assets/php/header.php') ?>

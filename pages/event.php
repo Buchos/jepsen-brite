@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php require_once('../assets/php/initialize.php') ?>
 <?php $page_title = 'Categories' ?>
 <?php require(PHP . '/header.php') ?>

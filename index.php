@@ -11,7 +11,7 @@ $response = $bdd->query('SELECT * FROM `events` WHERE `deleted` = 0 ORDER BY `da
 while ($data = $response->fetch()) {
     // display event ONLY if date > today
     if ($data['date']>=$today) {
-        echo '<article class="event-entry">
+        echo '<article class="event-entry-index">
             <div class="event-cat"><p>'. $data['category'] .'</p></div>
             <h3 class="event-title">' . $data['title'] . '</h3>
             <div class="ev-d-a"><p class="event-date">' . $data['date'] .'</p>

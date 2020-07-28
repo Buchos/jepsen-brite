@@ -469,6 +469,10 @@ nav a:hover {
   border-radius: 10px;
 }
 
+.event-entry-index:first-child {
+  background-color: #ffd16f;
+}
+
 .event-cat {
   height: 25px;
   width: 70px;

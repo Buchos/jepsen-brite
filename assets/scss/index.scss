@@ -4,6 +4,7 @@
 // COLORS
 $primary: #532F8C;
 $secondary: #ede2ff;
+$highlight: rgb(255, 209, 111);
 
 body {
     display: grid;
@@ -107,6 +108,10 @@ nav a:hover {
     padding: 25px;
     border: 2px solid $primary;
     border-radius: 10px;
+}
+// HIGHLIGHT FIRST EVENT
+.event-entry-index:first-child {
+    background-color: $highlight;
 }
 // EVENTS - CONTENT
 .event-cat {

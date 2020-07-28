@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php require_once('../assets/php/initialize.php') ?>
 <?php $page_title = 'Categories' ?>
 <?php require(PHP . '/header.php') ?>
@@ -10,7 +12,7 @@
     while ($data = $response->fetch()) {
         // display event ONLY if date > today
         if ($data['date']<$today) {
-            echo '<article class="event-entry">
+        echo '<article class="event-entry">
         <p class="event-cat">'. $data['category'] .'</p>
         <h3 class="event-title">' . $data['title'] . '</h3>
         <p class="event-date">' . $data['date'] .'</p>
@@ -24,3 +26,4 @@
 </section>
 
 <?php require(PHP . '/footer.php');
+?>

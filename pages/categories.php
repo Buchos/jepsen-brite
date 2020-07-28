@@ -3,14 +3,19 @@
 <?php require(PHP . '/header.php') ?>
 <?php require(PHP . '/nav.php')?>
 
-<h2>Past Events</h2>
-<section class="events-container">
+<?php
+if (isset($_GET['category'])) { ?>
+    <section class="events-container">
     <?php
-    $response = $bdd->query('SELECT * FROM `events` WHERE `deleted` = 0 ORDER BY `date`');
+    // Show Events of certain category
+    $response = $bdd->prepare('SELECT * FROM `events` WHERE `deleted` = 0 AND `category` = ? ORDER BY `date`');
+    $response->execute(array($_GET['category']));
+    $i = 0;
     while ($data = $response->fetch()) {
         // display event ONLY if date > today
-        if ($data['date']<$today) {
-        echo '<article class="event-entry">
+        if ($data['date']>$today) {
+            $i++;
+            echo '<article class="event-entry">
         <p class="event-cat">'. $data['category'] .'</p>
         <h3 class="event-title">' . $data['title'] . '</h3>
         <p class="event-date">' . $data['date'] .'</p>
@@ -20,8 +25,13 @@
     </article>';
         }
     }
+    if ($i == 0) { ?>
+        <article class="no-event">
+            <p>There are no future events</p>
+        </article>
+    <?php }
     ?>
 </section>
+<?php } ?>
 
 <?php require(PHP . '/footer.php');
-?>

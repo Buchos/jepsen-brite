@@ -1,5 +1,5 @@
 <?php
-// Effectuer ici la requête qui insère le message
+// Effectuer ici la requête qui insère le message 
 
 setcookie('pseudo', $_POST['pseudo'], time() + 365*24*3600, null, null, false, true);
 try
@@ -18,6 +18,6 @@ $require->execute(array(
 ));
 
 
-// Puis rediriger vers minichat.php comme ceci :
+// Puis rediriger vers minichat.php comme ceci : 
 header('Location: minichat.php');
 ?>

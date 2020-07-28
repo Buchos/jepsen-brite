@@ -1,3 +1,13 @@
+<?php
+$categories = $bdd->query('SELECT * FROM `categories`');
+while ($cats = $categories->fetch()) {
+    $catname = $cats['name'];
+    $catcount = $bdd->prepare('SELECT COUNT(*) AS catcount FROM `events` WHERE `category`= ? AND `date` >= ?');
+    $catcount->execute(array($catname, $today));
+    $numbofcat = $catcount->fetch();
+    ${'numbof' . $catname} = $numbofcat;
+}
+?>
         <nav>
             <a href="http://becode.local/jepsen-brite/">Home</a>
             <div class="dropdown">
@@ -19,3 +29,4 @@
             <a href="http://becode.local/jepsen-brite/pages/login.php">LOGIN</a>
         </nav>
         <section class="main-grid">
+            <?php var_dump($numbofmeetup);?>

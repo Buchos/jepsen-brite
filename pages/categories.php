@@ -3,19 +3,6 @@
 <?php require(PHP . '/header.php') ?>
 <?php require(PHP . '/nav.php')?>
 
-<!--<h2>Upcoming Events by Categories</h2>-->
-<!--<ul>-->
-<!--    --><?php
-//    $categories = $bdd->query('SELECT * FROM `categories`');
-//    while ($cats = $categories->fetch()) {
-//        $catname = $cats['name'];
-//        $catcount = $bdd->prepare('SELECT COUNT(*) AS catcount FROM `events` WHERE `category`= ? AND `date` >= ?');
-//        $catcount->execute(array($catname, $today));
-//        $numbofcat = $catcount->fetch();
-//        echo '<a href="http://becode.local/jepsen-brite/pages/categories.php?category=' . $catname . '"><li>' . $catname . ' - (' . $numbofcat[0] . ')' .'</li></a>';
-//    }
-//    ?>
-<!--</ul>-->
 <?php
 if (isset($_GET['category'])) { ?>
     <section class="events-container">
@@ -32,13 +19,13 @@ if (isset($_GET['category'])) { ?>
         <p class="event-cat">'. $data['category'] .'</p>
         <h3 class="event-title">' . $data['title'] . '</h3>
         <p class="event-date">' . $data['date'] .'</p>
-        <p class="event-author"> Organized by ' . $data['author'] . '</p>
+        <p class="event-author"> Organized by ' . $data['username'] . '</p>
         <img src="" alt="Here will be the image ">' . $data['image'] . '
         <p class="event-description">' . $data['description'] . '</p>
     </article>';
         }
     }
-    if($i == 0) { ?>
+    if ($i == 0) { ?>
         <article class="no-event">
             <p>There are no future events</p>
         </article>

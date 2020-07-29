@@ -25,6 +25,9 @@ while ($data = $response->fetch()) {
         
     </article>';
 } ?>
+        <form action="deleteevent.php" method="post">
+        <input type="submit" value="SUPPRIMER VOTRE EVENEMENT" />
+        
 <!--    FIN DE : VIEW EVENT-->
 
 
@@ -33,7 +36,7 @@ while ($data = $response->fetch()) {
 <?php
 $email = "arti.pelmeni@gmail.com";
 $size = 50;
-$grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . "&s=" . $size;
+$grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size;
 ?>
 
 <div>

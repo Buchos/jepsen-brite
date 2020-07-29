@@ -29,19 +29,19 @@ while ($data = $response->fetch()) {
 
 
 <!-- PARTIE COMMENTAIRES -->
-    <!--    GRAVATAR-->
-<?php
-$email = "arti.pelmeni@gmail.com";
-$size = 50;
-$grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . "&s=" . $size;
-?>
-
 <div>
     <h3>Comments :</h3>
-    <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
+<!--    <img class="gravatar" src="--><?php //echo $grav_url; ?><!--" alt="" />-->
 <?php
 while ($data2 = $comments->fetch()) {
-    echo '<p>' . $data2['comment'] . ' - <i>' . $data2['username'] . '</i></p>';
+    $username = $data2['username'];
+    $user = $bdd->prepare('SELECT * FROM `users` WHERE `username` = ?');
+    $user->execute(array($username));
+    $userArray = $user->fetch();
+    $email = $userArray['mail'];
+    $size = 50;
+    $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size;
+    echo '<img class="gravatar" src="' . $grav_url . '" alt="" />' . '<p>' . $data2['comment'] . ' - <i>' . $data2['username'] . '</i></p>';
 }
 ?>
 </div>

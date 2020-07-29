@@ -9,8 +9,15 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
     $requser->execute(array($getid));
     $userinfo = $requser->fetch(); ?>
 
+<?php // GRAVATAR
+    $email = $userinfo['mail'];
+    $size = 150;
+    $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . "&s=" . $size;
+?>
+
 <div align="center">
-    <h2>Profil de <?php echo $userinfo['username']; ?></h2>
+    <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
+    <h2><?php echo $userinfo['username']; ?></h2>
     <br /><br />
     <p>username = <?php echo $userinfo['username']; ?></p>
     <br />

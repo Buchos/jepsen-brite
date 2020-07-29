@@ -3,12 +3,11 @@
 <?php require('../assets/php/header.php') ?>
 <?php require('../assets/php/nav.php')?>
 <?php
-if (isset($_GET['id']) and $_GET['id'] > 0) {
-    $getid = intval($_GET['id']);
+if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
+    $getid = intval($_SESSION['id']);
     $requser = $bdd->prepare('SELECT * FROM users WHERE id = ?');
     $requser->execute(array($getid));
-    $userinfo = $requser->fetch();
-    ?>
+    $userinfo = $requser->fetch(); ?>
 
 <div align="center">
     <h2>Profil de <?php echo $userinfo['username']; ?></h2>
@@ -21,9 +20,16 @@ if (isset($_GET['id']) and $_GET['id'] > 0) {
     <br />
     <a href="editprofile.php">Edit profile</a>
     <a href="logout.php">LOG OUT</a>
+    <form action="deleteuser.php" method="post">
+        <br><br><br>
+        <input type="submit" value="SUPPRIMER VOTRE PROFIL" />
+        
+
+    </form>
     <?php }; ?>
 </div>
 
-<?php } ?>
+<?php
+} ?>
 
 <?php require('../assets/php/footer.php');?>

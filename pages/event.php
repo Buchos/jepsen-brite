@@ -14,6 +14,7 @@ $comments->execute(array($_GET['id']));
 
 <!--    VIEW EVENT    -->
 <?php
+
 while ($data = $response->fetch()) {
     echo '<article class="event-entry">
         <p class="event-cat">'. $data['category'] .'</p>
@@ -22,11 +23,13 @@ while ($data = $response->fetch()) {
         <p class="event-author"> Organized by ' . $data['username'] . '</p>
         <img src="" alt="Here will be the image ">' . $data['image'] . '
         <p class="event-description">' . $data['description'] . '</p>
-        
+        <form action="deleteevent.php" method="POST">
+            <input class="hidden" type="number" name="delete_id" value="' . $data['id'] . '" />
+            <input type="submit" value="Delete Event" />
+        </form>
     </article>';
 } ?>
-        <form action="deleteevent.php" method="post">
-        <input type="submit" value="SUPPRIMER VOTRE EVENEMENT" />
+
         
 <!--    FIN DE : VIEW EVENT-->
 

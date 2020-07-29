@@ -357,6 +357,10 @@ img {
   height: auto;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   display: -ms-grid;
   display: grid;

@@ -1,6 +1,10 @@
 @import "normalize";
 @import "responsive";
 
+.hidden {
+    display: none;
+}
+
 // COLORS
 $primary: #532F8C;
 $secondary: #ede2ff;

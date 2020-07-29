@@ -3,14 +3,21 @@
 <?php require('../assets/php/header.php') ?>
 <?php require('../assets/php/nav.php')?>
 <?php
-if (isset($_GET['id']) and $_GET['id'] > 0) {
-    $getid = intval($_GET['id']);
+if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
+    $getid = intval($_SESSION['id']);
     $requser = $bdd->prepare('SELECT * FROM users WHERE id = ?');
     $requser->execute(array($getid));
     $userinfo = $requser->fetch();
     ?>
 
+<?php // GRAVATAR
+    $email = $userinfo['mail'];
+    $size = 150;
+    $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . "&s=" . $size;
+?>
+
 <div align="center">
+    <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
     <h2>Profil de <?php echo $userinfo['username']; ?></h2>
     <br /><br />
     <p>username = <?php echo $userinfo['username']; ?></p>

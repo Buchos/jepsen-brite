@@ -28,9 +28,14 @@ while ($cats = $categories->fetch()) {
                 </div>
             </div>
             <a href="<?php echo $stupidroot?>pages/past.php">Past Events</a>
+<?php if (!isset($_SESSION)) { ?>
             <a href="<?php echo $stupidroot?>pages/login.php">Log In</a>
             <a href="<?php echo $stupidroot?>pages/new_user.php">SIGN UP</a>
+<?php } ?>
+<!-- IF LOGGED            -->
+<?php if (isset($_SESSION)) { ?>
             <a href="<?php echo $stupidroot?>pages/profile.php?id="<?php $_SESSION['id'];?>">Your Profile</a>
             <a href="<?php echo $stupidroot?>pages/create.php">Create New Event</a>
+<?php } ?>
         </nav>
         <section class="main-grid">

@@ -3,45 +3,44 @@
 <?php require('../assets/php/header.php') ?>
 <?php require('../assets/php/nav.php')?>
 <?php
-$bdd = new PDO('mysql:host=us-cdbr-east-02.cleardb.com;dbname=heroku_cc256803d465131', 'bd60e8ee909b42', '2db04edd', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
- 
-if(isset($_POST['forminscription'])) {
-   $username = htmlspecialchars($_POST['username']);
-   $mail = htmlspecialchars($_POST['mail']);
-   $mail2 = htmlspecialchars($_POST['mail2']);
-   $password = sha1($_POST['password']);
-   $password2 = sha1($_POST['password2']);
-   if(!empty($_POST['username']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['password']) AND !empty($_POST['password2'])) {
-      $usernamelength = strlen($username);
-      if($usernamelength <= 255) {
-         if($mail == $mail2) {
-            if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-               $reqmail = $bdd->prepare("SELECT * FROM users WHERE mail = ?");
-               $reqmail->execute(array($mail));
-               $mailexist = $reqmail->rowCount();
-               if($mailexist == 0) {
-                  if($password == $password2) {
-                     $insertmbr = $bdd->prepare("INSERT INTO users(username, password, mail) VALUES(?, ?, ?)");
-                     $insertmbr->execute(array($username, $password, $mail));
-                     $erreur = "Votre compte a bien été créé ! <a href=\"login.php\">Me connecter</a>";
-                  } else {
-                     $erreur = "Vos mots de passes ne correspondent pas !";
-                  }
-               } else {
-                  $erreur = "Adresse mail déjà utilisée !";
-               }
+
+if (isset($_POST['forminscription'])) {
+    $username = htmlspecialchars($_POST['username']);
+    $mail = htmlspecialchars($_POST['mail']);
+    $mail2 = htmlspecialchars($_POST['mail2']);
+    $password = sha1($_POST['password']);
+    $password2 = sha1($_POST['password2']);
+    if (!empty($_POST['username']) and !empty($_POST['mail']) and !empty($_POST['mail2']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
+        $usernamelength = strlen($username);
+        if ($usernamelength <= 255) {
+            if ($mail == $mail2) {
+                if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                    $reqmail = $bdd->prepare("SELECT * FROM users WHERE mail = ?");
+                    $reqmail->execute(array($mail));
+                    $mailexist = $reqmail->rowCount();
+                    if ($mailexist == 0) {
+                        if ($password == $password2) {
+                            $insertmbr = $bdd->prepare("INSERT INTO users(username, password, mail) VALUES(?, ?, ?)");
+                            $insertmbr->execute(array($username, $password, $mail));
+                            $erreur = "Votre compte a bien été créé ! <a href=\"login.php\">Me connecter</a>";
+                        } else {
+                            $erreur = "Vos mots de passes ne correspondent pas !";
+                        }
+                    } else {
+                        $erreur = "Adresse mail déjà utilisée !";
+                    }
+                } else {
+                    $erreur = "Votre adresse mail n'est pas valide !";
+                }
             } else {
-               $erreur = "Votre adresse mail n'est pas valide !";
+                $erreur = "Vos adresses mail ne correspondent pas !";
             }
-         } else {
-            $erreur = "Vos adresses mail ne correspondent pas !";
-         }
-      } else {
-         $erreur = "Votre pseudo ne doit pas dépasser 255 caractères !";
-      }
-   } else {
-      $erreur = "Tous les champs doivent être complétés !";
-   }
+        } else {
+            $erreur = "Votre pseudo ne doit pas dépasser 255 caractères !";
+        }
+    } else {
+        $erreur = "Tous les champs doivent être complétés !";
+    }
 }
 ?>
 

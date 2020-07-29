@@ -18,7 +18,7 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
 
 <div align="center">
     <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
-    <h2>Profil de <?php echo $userinfo['username']; ?></h2>
+    <h2><?php echo $userinfo['username']; ?></h2>
     <br /><br />
     <p>username = <?php echo $userinfo['username']; ?></p>
     <br />

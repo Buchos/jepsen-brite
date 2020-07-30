@@ -25,7 +25,7 @@ while ($data = $response->fetch()) {
         <img class="ev-img" src="' . $stupidroot . $data['image'] . '" alt="Image not found">
         <p class="event-description">' . $description . '</p>';
 } ?>
-    <!--    <<<VIEW EVENT -->
+<!--    FIN DE : VIEW EVENT-->
 
 <!--    DELETE EDIT EVENT>>> -->
 <?php if (isset($_SESSION['username'])) {

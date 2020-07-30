@@ -7,7 +7,7 @@
 
 <section class="events-container">
 <?php
-$response = $bdd->query("SELECT * FROM `events` WHERE deleted = 0 ORDER BY `date` DESC");
+$response = $bdd->query("SELECT * FROM `events` WHERE deleted = 0 ORDER BY `date`");
 while ($data = $response->fetch()) {
     // display event ONLY if date > today
     if ($data['date']>=$today) {
@@ -16,7 +16,7 @@ while ($data = $response->fetch()) {
             <h3 class="event-title">' . $data['title'] . '</h3>
             <div class="ev-d-a"><p class="event-date">' . $data['date'] .'</p>
             <p class="event-author"> - Organized by ' . $data['username'] . '</p></div>
-            <img src="" alt="Here will be the image ">' . $data['image'] . '
+            <img src="' . $data['image'] . '" alt="Here will be the image ">
             <p class="event-description">' . $data['description'] . '</p>
             <a href="pages/event.php?id=' . $data['id'] . '">View</a>
         </article>';

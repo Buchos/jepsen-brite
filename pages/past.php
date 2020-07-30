@@ -14,7 +14,7 @@
         <h3 class="event-title">' . $data['title'] . '</h3>
         <p class="event-date">' . $data['date'] .'</p>
         <p class="event-author"> Organized by ' . $data['username'] . '</p>
-        <img src="" alt="Here will be the image ">' . $data['image'] . '
+        <img src="' . $data['image'] . '" alt="Here will be the image ">
         <p class="event-description">' . $data['description'] . '</p>
     </article>';
         }

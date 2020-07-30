@@ -477,6 +477,14 @@ nav a:hover {
   background-color: #ffd16f;
 }
 
+.ev-img {
+  max-height: 400px;
+}
+
+.ev-img-sm {
+  max-height: 200px;
+}
+
 .event-cat {
   height: 25px;
   width: 70px;

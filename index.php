@@ -7,7 +7,7 @@
 
 <section class="events-container">
 <?php
-$response = $bdd->query('SELECT * FROM `events` WHERE `deleted` = 0 ORDER BY `date`');
+$response = $bdd->query("SELECT * FROM `events` WHERE deleted = 0 ORDER BY `date` DESC");
 while ($data = $response->fetch()) {
     // display event ONLY if date > today
     if ($data['date']>=$today) {
@@ -26,3 +26,22 @@ while ($data = $response->fetch()) {
 </section>
 
 <?php require(PHP . '/footer.php');
+
+
+
+
+
+
+
+
+//$currentPage = (int)($_GET['page'] ?? 1);
+//if ($currentPage <= 0) {
+//    echo ('Invalid page number');
+//}
+//$count = $bdd->query('SELECT COUNT(id) FROM events')->fetch(PDO::FETCH_NUM)[0];
+//$perPage = 10;
+//$pages = ceil($count / $perPage);
+//if ($currentPage > $pages) {
+//    echo ("This page doesn't exist");
+//}
+//$offset = $perPage * ($currentPage - 1);

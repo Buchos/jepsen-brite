@@ -19,7 +19,7 @@
         Créateur de l'évènement :
     </td>
     <td>
-        <input type="text" name="author" value="" /> <br/>
+        <input type="text" name="username" value="" /> <br/>
     </td>
 </tr>
 <tr>

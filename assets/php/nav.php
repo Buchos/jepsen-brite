@@ -11,7 +11,7 @@ while ($cats = $categories->fetch()) {
 }
 ?>
         <nav>
-            <a href="<?php echo $stupidroot?>">Home</a>
+            <a href="<?= $stupidroot?>">Home</a>
             <div class="dropdown">
                 <button class="dropbtn">Categories</button>
                 <div class="dropdown-content">

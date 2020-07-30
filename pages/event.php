@@ -30,6 +30,14 @@ while ($data = $response->fetch()) {
     </article>';
 } ?>
 
+    <div>
+        <h2>Leave a comment</h2>
+        <form action="addcomment.php" method="POST">
+            <input type="text" name="comment" required>
+            <input type="text">
+            <input type="submit" value="Post comment">
+        </form>
+    </div>
         
 <!--    FIN DE : VIEW EVENT-->
 

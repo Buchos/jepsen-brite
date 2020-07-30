@@ -3,7 +3,6 @@
 <?php require(PHP . '/header.php') ?>
 <?php require(PHP . '/nav.php')?>
 
-<h2>Past Events</h2>
 <section class="events-container">
     <?php
     $response = $bdd->query('SELECT * FROM `events` WHERE `deleted` = 0 ORDER BY `date`');

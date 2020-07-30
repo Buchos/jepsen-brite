@@ -8,6 +8,7 @@ $response = $bdd->prepare('SELECT * FROM `events` WHERE `id` = ?');
 $response->execute(array($_GET['id']));
 $comments = $bdd->prepare('SELECT * FROM `comments` WHERE `event` = ?');
 $comments->execute(array($_GET['id']));
+$emails = $bdd->prepare('SELECT * FROM `users` WHERE `username` = ?')
 ?>
 
 <section class="events-container">
@@ -21,14 +22,20 @@ while ($data = $response->fetch()) {
         <p class="event-date">' . $data['date'] .'</p>
         <p class="event-author"> Organized by ' . $data['username'] . '</p>
         <img src="" alt="Here will be the image ">' . $data['image'] . '
-        <p class="event-description">' . $data['description'] . '</p>
-        <form action="deleteevent.php" method="POST">
-            <input class="hidden" type="number" name="delete_id" value="' . $data['id'] . '" />
-            <input type="submit" value="Delete Event" />
-        </form>
-    </article>';
+        <p class="event-description">' . $data['description'] . '</p>';
 } ?>
 <!--    <<<VIEW EVENT -->
+
+<!--    DELETE EDIT EVENT>>> -->
+<?php if (isset($_SESSION['username'])) {
+    echo '<form action="deleteevent.php" method="POST">
+        <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
+        <input type="submit" value="Delete Event" />
+    </form>';
+} ?>
+<!--    <<<DELETE EDIT EVENT -->
+
+</article>
 
 <!--    ADD COMMENT>>> -->
 <?php if (isset($_SESSION['username'])) {
@@ -47,21 +54,19 @@ while ($data = $response->fetch()) {
 <!--    <<<ADD COMMENT -->
 
 <!-- COMMENTS>>> -->
-    <!--    GRAVATAR-->
-<?php
-$email = "arti.pelmeni@gmail.com";
-$size = 50;
-$grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size;
-?>
-
 <div>
     <h3>Comments :</h3>
-    <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
 <?php
 while ($data2 = $comments->fetch()) {
-    echo '<p>' . $data2['comment'] . ' - <i>' . $data2['username'] . '</i></p>';
-}
-?>
+    $emails->execute(array($data2['username']));
+    $emailraw = $emails->fetch();
+    $email = $emailraw['mail'];
+    $size = 50;
+    $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size;
+    ?>
+    <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
+    <p><?=$data2['comment']?> - <i><?=$data2['username']?></i></p>
+<?php } ?>
 </div>
 <!--    <<<COMMENTS -->
 

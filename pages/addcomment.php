@@ -7,10 +7,11 @@
 $addComment = $bdd->prepare("INSERT INTO `comments`(username, event, comment) VALUES(:username, :event, :comment)");
 $addComment->execute(array(
     'username' => $_POST['username'],
-    'event' => $_SESSION['author'],
+    'event' => $_POST['event'],
     'comment' => $_POST['comment'],
 ));
-header("Location: ../index.php?id=");
+$eventID = $_POST['event'];
+header("Location: event.php?id=$eventID");
 ?>
 
 <?php require('../assets/php/footer.php');

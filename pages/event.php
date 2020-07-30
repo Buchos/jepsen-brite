@@ -12,9 +12,8 @@ $comments->execute(array($_GET['id']));
 
 <section class="events-container">
 
-<!--    VIEW EVENT    -->
+<!--    VIEW EVENT>>>    -->
 <?php
-
 while ($data = $response->fetch()) {
     echo '<article class="event-entry">
         <p class="event-cat">'. $data['category'] .'</p>
@@ -29,20 +28,25 @@ while ($data = $response->fetch()) {
         </form>
     </article>';
 } ?>
+<!--    <<<VIEW EVENT -->
 
-    <div>
-        <h2>Leave a comment</h2>
-        <form action="addcomment.php" method="POST">
-            <input type="text" name="comment" required>
-            <input type="text">
-            <input type="submit" value="Post comment">
-        </form>
-    </div>
-        
-<!--    FIN DE : VIEW EVENT-->
+<!--    ADD COMMENT>>> -->
+<?php if (isset($_SESSION['username'])) {
+    $user = $_SESSION['username'];
+    ?>
+<div>
+    <h2>Leave a comment</h2>
+    <form action="addcomment.php" method="POST">
+        <input type="text" name="comment" required>
+        <input class="hidden" type="text" name="username" value="<?=$user?>">
+        <input class="hidden" type="number" name="event" value="<?=$_GET['id']?>">
+        <input type="submit" value="Post comment">
+    </form>
+</div>
+<?php }; ?>
+<!--    <<<ADD COMMENT -->
 
-
-<!-- PARTIE COMMENTAIRES -->
+<!-- COMMENTS>>> -->
     <!--    GRAVATAR-->
 <?php
 $email = "arti.pelmeni@gmail.com";
@@ -59,7 +63,7 @@ while ($data2 = $comments->fetch()) {
 }
 ?>
 </div>
-<!--    FIN DE : COMMENTAIRES -->
+<!--    <<<COMMENTS -->
 
 </section>
 

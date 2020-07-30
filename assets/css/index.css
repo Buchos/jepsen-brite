@@ -357,6 +357,10 @@ img {
   height: auto;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   display: -ms-grid;
   display: grid;
@@ -471,6 +475,14 @@ nav a:hover {
 
 .event-entry-index:first-child {
   background-color: #ffd16f;
+}
+
+.ev-img {
+  max-height: 400px;
+}
+
+.ev-img-sm {
+  max-height: 200px;
 }
 
 .event-cat {

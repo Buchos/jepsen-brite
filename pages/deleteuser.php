@@ -1,8 +1,10 @@
 <?php require_once('../assets/php/initialize.php') ?>
 <?php
-$deleteUser = $bdd->prepare("UPDATE `users` SET `deleted`= ('1') WHERE id = ?");
+$deleteUser = $bdd->prepare("UPDATE users SET deleted = 1 WHERE id = ?");
         $deleteUser->execute(array($_SESSION['id']));
-        header("Location: index.php");
+        $_SESSION = array();
+        session_destroy();
+        header("Location: login.php");
 ?>
 
 <?php $page_title = 'Your Profile' ?>

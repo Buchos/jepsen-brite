@@ -56,7 +56,9 @@ if (isset($_POST['forminscription'])) {
                     <label for="username">Pseudo :</label>
                 </td>
                 <td>
-                    <input type="text" placeholder="Votre pseudo" id="username" name="username" value="<?php if(isset($username)) { echo $username; } ?>" />
+                    <input type="text" placeholder="Votre pseudo" id="username" name="username" value="<?php if (isset($username)) {
+    echo $username;
+} ?>" />
                 </td>
             </tr>
             <tr>
@@ -64,7 +66,9 @@ if (isset($_POST['forminscription'])) {
                     <label for="mail">Mail :</label>
                 </td>
                 <td>
-                    <input type="email" placeholder="Votre mail" id="mail" name="mail" value="<?php if(isset($mail)) { echo $mail; } ?>" />
+                    <input type="email" placeholder="Votre mail" id="mail" name="mail" value="<?php if (isset($mail)) {
+    echo $mail;
+} ?>" />
                 </td>
             </tr>
             <tr>
@@ -72,7 +76,9 @@ if (isset($_POST['forminscription'])) {
                     <label for="mail2">Confirmation du mail :</label>
                 </td>
                 <td>
-                    <input type="email" placeholder="Confirmez votre mail" id="mail2" name="mail2" value="<?php if(isset($mail2)) { echo $mail2; } ?>" />
+                    <input type="email" placeholder="Confirmez votre mail" id="mail2" name="mail2" value="<?php if (isset($mail2)) {
+    echo $mail2;
+} ?>" />
                 </td>
             </tr>
             <tr>
@@ -101,8 +107,8 @@ if (isset($_POST['forminscription'])) {
         </table>
     </form>
     <?php if (isset($erreur)) {
-        echo '<span color="red">'.$erreur."</span>";
-    } ?>
+    echo '<span color="red">'.$erreur."</span>";
+} ?>
 </div>
 
 <?php require('../assets/php/footer.php');

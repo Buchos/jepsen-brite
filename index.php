@@ -11,13 +11,14 @@ $response = $bdd->query("SELECT * FROM `events` WHERE deleted = 0 ORDER BY `date
 while ($data = $response->fetch()) {
     // display event ONLY if date > today
     if ($data['date']>=$today) {
+        $description = $Parsedown->text($data['description']);
         echo '<article class="event-entry-index">
             <div class="event-cat"><p>'. $data['category'] .'</p></div>
             <h3 class="event-title">' . $data['title'] . '</h3>
             <div class="ev-d-a"><p class="event-date">' . $data['date'] .'</p>
             <p class="event-author"> - Organized by ' . $data['username'] . '</p></div>
             <img src="' . $data['image'] . '" alt="Here will be the image ">
-            <p class="event-description">' . $data['description'] . '</p>
+            <p class="event-description">' . $description . '</p>
             <a href="pages/event.php?id=' . $data['id'] . '">View</a>
         </article>';
     }

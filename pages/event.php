@@ -16,15 +16,16 @@ $emails = $bdd->prepare('SELECT * FROM `users` WHERE `username` = ?')
 <!--    VIEW EVENT>>>    -->
 <?php
 while ($data = $response->fetch()) {
+    $description = $Parsedown->text($data['description']);
     echo '<article class="event-entry">
         <p class="event-cat">'. $data['category'] .'</p>
         <h3 class="event-title">' . $data['title'] . '</h3>
         <p class="event-date">' . $data['date'] .'</p>
         <p class="event-author"> Organized by ' . $data['username'] . '</p>
         <img src="' . $data['image'] . '" alt="Here will be the image ">
-        <p class="event-description">' . $data['description'] . '</p>';
+        <p class="event-description">' . $description . '</p>';
 } ?>
-<!--    <<<VIEW EVENT -->
+    <!--    <<<VIEW EVENT -->
 
 <!--    DELETE EDIT EVENT>>> -->
 <?php if (isset($_SESSION['username'])) {

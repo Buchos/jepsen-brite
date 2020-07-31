@@ -23,6 +23,7 @@ if (isset($_GET['category'])) { ?>
             <p class="event-author"> Organized by ' . $data['username'] . '</p>
             <img class="ev-img-sm" src="' . $stupidroot . $data['image'] . '" alt="Image not found">
             <p class="event-description">' . $description . '</p>
+            <a href="event.php?id=' . $data['id'] . '">View</a>
             </article>';
         }
     }

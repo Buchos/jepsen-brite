@@ -27,22 +27,3 @@ while ($data = $response->fetch()) {
 </section>
 
 <?php require(PHP . '/footer.php');
-
-
-
-
-
-
-
-
-//$currentPage = (int)($_GET['page'] ?? 1);
-//if ($currentPage <= 0) {
-//    echo ('Invalid page number');
-//}
-//$count = $bdd->query('SELECT COUNT(id) FROM events')->fetch(PDO::FETCH_NUM)[0];
-//$perPage = 10;
-//$pages = ceil($count / $perPage);
-//if ($currentPage > $pages) {
-//    echo ("This page doesn't exist");
-//}
-//$offset = $perPage * ($currentPage - 1);

@@ -26,15 +26,9 @@ while ($data = $response->fetch()) {
         <p class="event-description">' . $description . '</p>';
 } ?>
         
-        <form action="deleteevent.php" method="post">
-        <input type="submit" value="SUPRIMMER VOTRE EVENEMENT" />
-        </form>
-        <br>
-        <form action="editevent.php" method="POST">
-        <input type="submit" value="EDITER VOTRE EVENT">
-        </form>
-        
-<!--    FIN DE : VIEW EVENT-->
+
+<!-- FIN DE VIEW-EVENT -->
+
 
 <!--    DELETE EDIT EVENT>>> -->
 <?php if (isset($_SESSION['username'])) {

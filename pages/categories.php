@@ -25,7 +25,7 @@ if (isset($_GET['category'])) { ?>
             <h3 class="event-title">' . $data['title'] . '</h3>
             <p class="event-date">' . $data['date'] .'</p>
             <p class="event-author"> Organized by ' . $username . '</p>
-            <img class="ev-img-sm" src="' . $stupidroot . $data['image'] . '" alt="Image not found">
+            <img class="ev-img-sm" src="' . $data['image'] . '" alt="Image not found">
             <p class="event-description">' . $description . '</p>
             <a href="event.php?id=' . $data['id'] . '">View</a>
             </article>';

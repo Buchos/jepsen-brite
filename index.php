@@ -21,7 +21,7 @@ while ($data = $response->fetch()) {
             <h3 class="event-title">' . $data['title'] . '</h3>
             <div class="ev-d-a"><p class="event-date">' . $data['date'] .'</p>
             <p class="event-author"> - Organized by ' . $username . '</p></div>
-            <img class="ev-img-sm" src="' . $stupidroot . $data['image'] . '" alt="Image not found">
+            <img class="ev-img-sm" src="' . $data['image'] . '" alt="Image not found">
             <p class="event-description">' . $description . '</p>
             <a href="pages/event.php?id=' . $data['id'] . '">View</a>
         </article>';

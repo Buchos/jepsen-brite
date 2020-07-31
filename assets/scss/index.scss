@@ -96,8 +96,8 @@ nav a:hover {
 
 // EVENTS - CONTAINER
 .events-container {
-    width: 600px;
-    height: 800px;
+    max-width: 600px;
+    height: 85vh;
     margin: 0 auto;
     display: grid;
     row-gap: 10px;

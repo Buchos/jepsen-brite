@@ -1,6 +1,6 @@
 <?php require_once('../assets/php/initialize.php') ?>
-<?php 
-if(isset($_SESSION['id'])) {
+<?php
+if (isset($_SESSION['id'])) {
    $requser = $bdd->prepare("SELECT * FROM users WHERE id = ?");
    $requser->execute(array($_SESSION['id']));
    $user = $requser->fetch();

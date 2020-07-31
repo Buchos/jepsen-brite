@@ -45,7 +45,6 @@ echo '<article class="event-entry">
 } ?>
 <!--    <<<DELETE EDIT EVENT -->
 
-<<<<<<< HEAD
 <!-- PARTIE COMMENTAIRES -->
 <div>
     <h3>Comments :</h3>
@@ -62,7 +61,7 @@ while ($data2 = $comments->fetch()) {
     echo '<img class="gravatar" src="' . $grav_url . '" alt="" />' . '<p>' . $data2['comment'] . ' - <i>' . $data2['username'] . '</i></p>';
 }
 ?>
-=======
+
 </article>
 
 <!--    ADD COMMENT>>> -->

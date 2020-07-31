@@ -1,6 +1,6 @@
 <?php require_once('../assets/php/initialize.php') ?>
 <?php
-if (isset($_POST['id'])) {
+if (isset($_SESSION['id'])) {
     $reqevent = $bdd->prepare("SELECT * FROM events WHERE id = ?");
     $reqevent->execute(array($_POST['id']));
     $event = $reqevent->fetch();

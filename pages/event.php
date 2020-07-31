@@ -27,7 +27,8 @@ while ($data = $response->fetch()) {
 } ?>
         <a href="editevent.php">Edit event</a>
         <form action="deleteevent.php" method="post">
-        <input type="submit" value="SUPPRIMER VOTRE EVENEMENT" />
+        <input type="submit" value="Editer VOTRE EVENEMENT" />
+        </form>
         
 <!--    FIN DE : VIEW EVENT-->
 

@@ -34,7 +34,7 @@ echo '<article class="event-entry">
 <!--    FIN DE : VIEW EVENT-->
 
 <!--    DELETE/EDIT EVENT>>> -->
-<?php if (isset($_SESSION['username']) and ($_SESSION['username'] == $eventAuthor)) {
+<?php if (isset($_SESSION['id']) and ($_SESSION['id'] == $eventAuthor)) {
     echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
     <input type="submit" value="Edit Event" />

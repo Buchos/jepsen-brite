@@ -48,8 +48,8 @@ echo '<article class="event-entry">
 </article>
 
 <!--    ADD COMMENT>>> -->
-<?php if (isset($_SESSION['username'])) {
-    $user = $_SESSION['username'];
+<?php if (isset($_SESSION['id'])) {
+    $user = $_SESSION['id'];
     ?>
 <div>
     <h2>Leave a comment</h2>
@@ -68,6 +68,10 @@ echo '<article class="event-entry">
     <h3>Comments :</h3>
 <?php
 while ($data2 = $comments->fetch()) {
+    $findCommentUsername = $bdd->prepare('SELECT * FROM `users` WHERE id =?');
+    $dataForUsername->execute(array($data2['username']));
+    $commentUsername = $dataForUsername->fetch();
+    $commentAuthor = $commentUsername['username'];
     $emails->execute(array($data2['username']));
     $emailraw = $emails->fetch();
     $email = $emailraw['mail'];
@@ -75,7 +79,7 @@ while ($data2 = $comments->fetch()) {
     $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size;
     ?>
     <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
-    <p><?=$data2['comment']?> - <i><?=$username?></i></p>
+    <p><?=$data2['comment']?> - <i><?=$commentAuthor?></i></p>
 <?php } ?>
 </div>
 <!--    <<<COMMENTS -->

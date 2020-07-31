@@ -17,6 +17,7 @@ $emails = $bdd->prepare('SELECT * FROM `users` WHERE `username` = ?')
 <?php
 while ($data = $response->fetch()) {
     $description = $Parsedown->text($data['description']);
+    $eventAuthor = $data['username'];
     echo '<article class="event-entry">
         <p class="event-cat">'. $data['category'] .'</p>
         <h3 class="event-title">' . $data['title'] . '</h3>
@@ -28,8 +29,8 @@ while ($data = $response->fetch()) {
         
 <!--    FIN DE : VIEW EVENT-->
 
-<!--    DELETE EDIT EVENT>>> -->
-<?php if (isset($_SESSION['username'])) {
+<!--    DELETE/EDIT EVENT>>> -->
+<?php if (isset($_SESSION['username']) AND ($_SESSION['username'] == $eventAuthor)) {
     echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
     <input type="submit" value="Edit Event" />

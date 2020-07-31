@@ -1,8 +1,8 @@
 <?php require_once('../assets/php/initialize.php') ?>
 <?php
-if (isset($_POST['id'])) {
+if (isset($_SESSION['id'])) {
     $reqevent = $bdd->prepare("SELECT * FROM events WHERE id = ?");
-    $reqevent->execute(array($_POST['id']));
+    $reqevent->execute(array($_POST['edit_id']));
     $event = $reqevent->fetch();
     if (isset($_POST['newtitle']) and !empty($_POST['newtitle']) and $_POST['newtitle'] != $event['title']) {
         $newtitle = htmlspecialchars($_POST['newtitle']);

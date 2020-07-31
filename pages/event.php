@@ -25,11 +25,15 @@ while ($data = $response->fetch()) {
         <img class="ev-img" src="' . $stupidroot . $data['image'] . '" alt="Image not found">
         <p class="event-description">' . $description . '</p>';
 } ?>
+        
 <!--    FIN DE : VIEW EVENT-->
 
 <!--    DELETE EDIT EVENT>>> -->
 <?php if (isset($_SESSION['username'])) {
-    echo '<form action="deleteevent.php" method="POST">
+    echo '<form action="editevent.php" method="POST">
+    <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
+    <input type="submit" value="Edit Event" />
+</form>' . '<form action="deleteevent.php" method="POST">
         <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
         <input type="submit" value="Delete Event" />
     </form>';

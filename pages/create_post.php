@@ -11,14 +11,13 @@ try {
 
 $require = $bdd->prepare('INSERT INTO events(title, username, date, time, image , description, category) VALUES(:title, :username, :date, :time, :image , :description, :category)');
 $require->execute(array(
-'title' => $_POST['title'],
-'username' => $_SESSION['username'],
-'date' => $_POST['date'],
-'time' => $_POST['time'],
-'image' => $_POST['image'],
-'description' => $_POST['description'],
-'category' => $_POST['category'],
-
+    'title' => $_POST['title'],
+    'username' => $_POST['username'],
+    'date' => $_POST['date'],
+    'time' => $_POST['time'],
+    'image' => $_POST['image'],
+    'description' => $_POST['description'],
+    'category' =>  $_POST['category']
 ));
 
 

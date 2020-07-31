@@ -25,9 +25,13 @@ while ($data = $response->fetch()) {
         
     </article>';
 } ?>
-        <a href="editevent.php">Edit event</a>
+        
         <form action="deleteevent.php" method="post">
-        <input type="submit" value="Editer VOTRE EVENEMENT" />
+        <input type="submit" value="SUPRIMMER VOTRE EVENEMENT" />
+        </form>
+        <br>
+        <form action="editevent.php" method="POST">
+        <input type="submit" value="EDITER VOTRE EVENT">
         </form>
         
 <!--    FIN DE : VIEW EVENT-->

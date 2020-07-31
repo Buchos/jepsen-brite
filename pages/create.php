@@ -137,7 +137,7 @@
             </tr>
             <tr>
                 <td>
-                    Image :
+                    Image URL :
                 </td>
                 <td>
                     <input type="text" name="image" value="" /> <br/>

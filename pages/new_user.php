@@ -45,7 +45,6 @@ if (isset($_POST['forminscription'])) {
 ?>
 
 
-
 <div align="center">
     <h2>Inscription</h2>
     <br /><br />

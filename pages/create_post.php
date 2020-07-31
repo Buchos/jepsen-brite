@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 
 <?php
-// Effectuer ici la requête qui insère le message 
+// Effectuer ici la requête qui insère le message
 
 try {
     $bdd = new PDO('mysql:host=us-cdbr-east-02.cleardb.com;dbname=heroku_cc256803d465131', 'bd60e8ee909b42', '2db04edd', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -21,6 +21,6 @@ $require->execute(array(
 ));
 
 
-// Puis rediriger vers l'index.php comme ceci : 
+// Puis rediriger vers l'index.php comme ceci :
 header('Location: ../index.php');
 ?>

@@ -24,7 +24,8 @@ while ($data = $response->fetch()) {
         <p class="event-author"> Organized by ' . $data['username'] . '</p>
         <img class="ev-img" src="' . $stupidroot . $data['image'] . '" alt="Image not found">
         <p class="event-description">' . $description . '</p>';
-} ?>
+}
+?>
         
 
 <!-- FIN DE VIEW-EVENT -->
@@ -39,7 +40,8 @@ while ($data = $response->fetch()) {
         <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
         <input type="submit" value="Delete Event" />
     </form>';
-} ?>
+}?>
+
 <!--    <<<DELETE EDIT EVENT -->
 
 </article>

@@ -12,8 +12,7 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
 <?php // GRAVATAR
     $email = $userinfo['mail'];
     $size = 150;
-    $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . "&s=" . $size;
-?>
+    $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size; ?>
 
 <div align="center">
     <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
@@ -34,6 +33,7 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
 
     </form>
     <?php }; ?>
+
 </div>
 
 <?php

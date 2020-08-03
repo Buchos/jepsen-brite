@@ -1,5 +1,5 @@
 <!--
-    a faire : cookie qui retient le pseudo du dernier message validé et l'assigne en "value" de l'input "pseudo"
+    a faire : cookie qui retient le pseudo du dernier message validé et l'assigne en "value" de l'input "pseudo" 
 -->
 <!DOCTYPE html>
 <html lang="en">

@@ -12,7 +12,7 @@ try {
 $require = $bdd->prepare('INSERT INTO events(title, username, date, time, image , description, category) VALUES(:title, :username, :date, :time, :image , :description, :category)');
 $require->execute(array(
     'title' => $_POST['title'],
-    'username' => $_POST['username'],
+    'username' => $_SESSION['id'],
     'date' => $_POST['date'],
     'time' => $_POST['time'],
     'image' => $_POST['image'],

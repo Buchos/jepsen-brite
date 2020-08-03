@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$today = date('Y-m-j');
+$today = date('Y-m-d');
 
 // PATH CONSTANTS
 define("PHP", dirname(__FILE__));

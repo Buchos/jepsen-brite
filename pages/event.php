@@ -23,25 +23,48 @@ $username = $rawusername['username'];
 $description = $Parsedown->text($data['description']);
 $eventAuthor = $data['username'];
 echo '<article class="event-entry">
-    <p class="event-cat">'. $data['category'] .'</p>
-    <h3 class="event-title">' . $data['title'] . '</h3>
-    <p class="event-date">' . $data['date'] .'</p>
-    <p class="event-author"> Organized by ' . $username . '</p>
-    <img class="ev-img" src="' . $data['image'] . '" alt="Image not found">
-    <p class="event-description">' . $description . '</p>';
+	<p class="event-cat">'. $data['category'] .'</p>
+	<h3 class="event-title">' . $data['title'] . '</h3>
+	<p class="event-date">' . $data['date'] .'</p>
+	<p class="event-author"> Organized by ' . $username . '</p>
+	<img class="ev-img" src="' . $data['image'] . '" alt="Image not found">
+	<p class="event-description">' . $description . '</p>';
+
+	// PARTICIPER A L'EVENEMENT >>>
+	if (isset($_SESSION['id']))
+	{
+		echo
+			"<form method='POST'>
+				<input type='submit' name='participants' value='Je participe !'>
+			</form>"
+		;
+
+		if(isset($_POST['participants']))
+		{
+			$participants = $_SESSION['username'];
+			$event_id = $_GET['id'];
+
+			$insert_participant = $bdd -> prepare('UPDATE events SET participants = ? WHERE id = ?');
+			$insert_participant -> execute(array($participants, $event_id));
+
+			echo "Votre participation a été prise en compte !";
+		}
+	}
+	// <<< PARTICIPER A L'EVENEMENT
 ?>
-        
 <!--    FIN DE : VIEW EVENT-->
+
+
 
 <!--    DELETE/EDIT EVENT>>> -->
 <?php if (isset($_SESSION['id']) and ($_SESSION['id'] == $eventAuthor)) {
-    echo '<form action="editevent.php" method="POST">
-    <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
-    <input type="submit" value="Edit Event" />
+	echo '<form action="editevent.php" method="POST">
+	<input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
+	<input type="submit" value="Edit Event" />
 </form>' . '<form action="deleteevent.php" method="POST">
-        <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
-        <input type="submit" value="Delete Event" />
-    </form>';
+		<input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
+		<input type="submit" value="Delete Event" />
+	</form>';
 } ?>
 <!--    <<<DELETE EDIT EVENT -->
 
@@ -49,37 +72,37 @@ echo '<article class="event-entry">
 
 <!--    ADD COMMENT>>> -->
 <?php if (isset($_SESSION['id'])) {
-    $user = $_SESSION['id'];
-    ?>
+	$user = $_SESSION['id'];
+	?>
 <div>
-    <h2>Leave a comment</h2>
-    <form action="addcomment.php" method="POST">
-        <input type="text" name="comment" required>
-        <input class="hidden" type="text" name="username" value="<?=$user?>">
-        <input class="hidden" type="number" name="event" value="<?=$_GET['id']?>">
-        <input type="submit" value="Post comment">
-    </form>
+	<h2>Leave a comment</h2>
+	<form action="addcomment.php" method="POST">
+		<input type="text" name="comment" required>
+		<input class="hidden" type="text" name="username" value="<?=$user?>">
+		<input class="hidden" type="number" name="event" value="<?=$_GET['id']?>">
+		<input type="submit" value="Post comment">
+	</form>
 </div>
 <?php }; ?>
 <!--    <<<ADD COMMENT -->
 
 <!-- COMMENTS>>> -->
 <div>
-    <h3>Comments :</h3>
+	<h3>Comments :</h3>
 <?php
 while ($data2 = $comments->fetch()) {
-    $findCommentUsername = $bdd->prepare('SELECT * FROM `users` WHERE id =?');
-    $dataForUsername->execute(array($data2['username']));
-    $commentUsername = $dataForUsername->fetch();
-    $commentAuthor = $commentUsername['username'];
-    $emails->execute(array($data2['username']));
-    $emailraw = $emails->fetch();
-    $email = $emailraw['mail'];
-    $size = 50;
-    $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size;
-    ?>
-    <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
-    <p><?=$data2['comment']?> - <i><?=$commentAuthor?></i></p>
+	$findCommentUsername = $bdd->prepare('SELECT * FROM `users` WHERE id =?');
+	$dataForUsername->execute(array($data2['username']));
+	$commentUsername = $dataForUsername->fetch();
+	$commentAuthor = $commentUsername['username'];
+	$emails->execute(array($data2['username']));
+	$emailraw = $emails->fetch();
+	$email = $emailraw['mail'];
+	$size = 50;
+	$grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size;
+	?>
+	<img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
+	<p><?=$data2['comment']?> - <i><?=$commentAuthor?></i></p>
 <?php } ?>
 </div>
 <!--    <<<COMMENTS -->

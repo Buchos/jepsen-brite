@@ -22,8 +22,8 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
     <br />
     <p>E-mail = <?php echo $userinfo['mail']; ?></p>
     <br />
-    <?php if (isset($_SESSION['id']) and $userinfo['id'] == $_SESSION['id']) { ?>
-    <br />
+    <?php if ($_SESSION['username'] == 'admin') {
+        echo '<br />
     <a href="editprofile.php">Edit profile</a>
     <a href="logout.php">LOG OUT</a>
     <form action="deleteuser.php" method="post">
@@ -31,9 +31,20 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
         <input type="submit" value="SUPPRIMER VOTRE PROFIL" />
         
 
-    </form>
-    <?php }; ?>
+    </form>'
+    ;
+    } elseif (isset($_SESSION['id']) and $userinfo['id'] == $_SESSION['id']) {
+        echo '<br />
+    <a href="editprofile.php">Edit profile</a>
+    <a href="logout.php">LOG OUT</a>
+    <form action="deleteuser.php" method="post">
+        <br><br><br>
+        <input type="submit" value="SUPPRIMER VOTRE PROFIL" />
+        
 
+    </form>'
+    ;
+    } ?>
 </div>
 
 <?php

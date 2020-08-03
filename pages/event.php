@@ -36,7 +36,16 @@ echo '<article class="event-entry">
 
 
 <!--    DELETE/EDIT EVENT>>> -->
-<?php if (isset($_SESSION['id']) and ($_SESSION['id'] == $eventAuthor)) {
+<!-- Vérif si loggué comme admin ou créateur de l'évent -->
+<?php if ($_SESSION['username'] == 'admin') {
+    echo '<form action="editevent.php" method="POST">
+    <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
+    <input type="submit" value="Edit Event" />
+</form>' . '<form action="deleteevent.php" method="POST">
+        <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
+        <input type="submit" value="Delete Event" />
+    </form>';
+} elseif (isset($_SESSION['id']) and ($_SESSION['id'] == $eventAuthor)) {
     echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
     <input type="submit" value="Edit Event" />
@@ -46,7 +55,6 @@ echo '<article class="event-entry">
     </form>';
 }?>
 
-<!--    <<<DELETE EDIT EVENT -->
 
 </article>
 

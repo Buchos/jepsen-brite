@@ -451,8 +451,8 @@ nav a:hover {
 }
 
 .events-container {
-  width: 600px;
-  height: 800px;
+  max-width: 600px;
+  height: 85vh;
   margin: 0 auto;
   display: -ms-grid;
   display: grid;

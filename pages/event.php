@@ -8,31 +8,35 @@ $response = $bdd->prepare('SELECT * FROM `events` WHERE `id` = ?');
 $response->execute(array($_GET['id']));
 $comments = $bdd->prepare('SELECT * FROM `comments` WHERE `event` = ?');
 $comments->execute(array($_GET['id']));
-$emails = $bdd->prepare('SELECT * FROM `users` WHERE `username` = ?')
+$emails = $bdd->prepare('SELECT * FROM `users` WHERE `id` = ?')
 ?>
 
 <section class="events-container">
 
 <!--    VIEW EVENT>>>    -->
 <?php
-while ($data = $response->fetch()) {
-    $description = $Parsedown->text($data['description']);
-    echo '<article class="event-entry">
-        <p class="event-cat">'. $data['category'] .'</p>
-        <h3 class="event-title">' . $data['title'] . '</h3>
-        <p class="event-date">' . $data['date'] .'</p>
-        <p class="event-author"> Organized by ' . $data['username'] . '</p>
-        <img class="ev-img" src="' . $stupidroot . $data['image'] . '" alt="Image not found">
-        <p class="event-description">' . $description . '</p>';
-}
+$data = $response->fetch();
+$dataForUsername = $bdd->prepare('SELECT * FROM `users` WHERE id =?');
+$dataForUsername->execute(array($data['username']));
+$rawusername = $dataForUsername->fetch();
+$username = $rawusername['username'];
+$description = $Parsedown->text($data['description']);
+$eventAuthor = $data['username'];
+echo '<article class="event-entry">
+    <p class="event-cat">'. $data['category'] .'</p>
+    <h3 class="event-title">' . $data['title'] . '</h3>
+    <p class="event-date">' . $data['date'] .'</p>
+    <p class="event-author"> Organized by ' . $username . '</p>
+    <img class="ev-img" src="' . $data['image'] . '" alt="Image not found">
+    <p class="event-description">' . $description . '</p>';
 ?>
         
 
 <!-- FIN DE VIEW-EVENT -->
 
 
-<!--    DELETE EDIT EVENT>>> -->
-<?php if (isset($_SESSION['username'])) {
+<!--    DELETE/EDIT EVENT>>> -->
+<?php if (isset($_SESSION['id']) and ($_SESSION['id'] == $eventAuthor)) {
     echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
     <input type="submit" value="Edit Event" />
@@ -47,8 +51,8 @@ while ($data = $response->fetch()) {
 </article>
 
 <!--    ADD COMMENT>>> -->
-<?php if (isset($_SESSION['username'])) {
-    $user = $_SESSION['username']; ?>
+<?php if (isset($_SESSION['id'])) {
+    $user = $_SESSION['id']; ?>
 <div>
     <h2>Leave a comment</h2>
     <form action="addcomment.php" method="POST">
@@ -67,13 +71,17 @@ while ($data = $response->fetch()) {
     <h3>Comments :</h3>
 <?php
 while ($data2 = $comments->fetch()) {
+        $findCommentUsername = $bdd->prepare('SELECT * FROM `users` WHERE id =?');
+        $dataForUsername->execute(array($data2['username']));
+        $commentUsername = $dataForUsername->fetch();
+        $commentAuthor = $commentUsername['username'];
         $emails->execute(array($data2['username']));
         $emailraw = $emails->fetch();
         $email = $emailraw['mail'];
         $size = 50;
         $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size; ?>
     <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
-    <p><?=$data2['comment']?> - <i><?=$data2['username']?></i></p>
+    <p><?=$data2['comment']?> - <i><?=$commentAuthor?></i></p>
 <?php
     } ?>
 </div>

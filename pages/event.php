@@ -32,7 +32,6 @@ echo '<article class="event-entry">
 ?>
         
 
-<!-- FIN DE VIEW-EVENT -->
 
 
 <!--    DELETE/EDIT EVENT>>> -->
@@ -72,14 +71,13 @@ echo '<article class="event-entry">
 </div>
 <?php
 }; ?>
-<!--    <<<ADD COMMENT -->
 
 <!-- COMMENTS>>> -->
 <div>
     <h3>Comments :</h3>
 <?php
 while ($data2 = $comments->fetch()) {
-        $findCommentUsername = $bdd->prepare('SELECT * FROM `users` WHERE id =?');
+        $findCommentUsername = $bdd->prepare('SELECT * FROM `users` WHERE id =? AND deleted = 0');
         $dataForUsername->execute(array($data2['username']));
         $commentUsername = $dataForUsername->fetch();
         $commentAuthor = $commentUsername['username'];
@@ -90,8 +88,17 @@ while ($data2 = $comments->fetch()) {
         $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . "&s=" . $size; ?>
     <img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
     <p><?=$data2['comment']?> - <i><?=$commentAuthor?></i></p>
+    <?php if ($_SESSION['username'] == 'admin') {
+            echo '<form action="deletecomment.php" method="POST">
+        <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
+        <input type="submit" value="Delete Comment as Admin" />
+    </form>
+    <br><br>';
+        } ?>
 <?php
-    } ?>
+    }
+    ?>
+    
 </div>
 <!--    <<<COMMENTS -->
 

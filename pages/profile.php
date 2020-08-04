@@ -33,7 +33,6 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
     <form action="deleteuser.php" method="post">
         <br><br><br>
         <input type="submit" value="SUPPRIMER VOTRE PROFIL" />
-        
 
     </form>'
     ;

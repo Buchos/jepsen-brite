@@ -27,7 +27,7 @@ echo '<article class="event-entry">
     <h3 class="event-title">' . $data['title'] . '</h3>
     <p class="event-date">' . $data['date'] .'</p>
     <p class="event-author"> Organized by ' . $username . '</p>
-    <img class="ev-img" src="' . $data['image'] . '" alt="Image not found">
+    <iframe width="500" height="315" src="' . $data["image"] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <p class="event-description">' . $description . '</p>';
 ?>
         
@@ -36,7 +36,7 @@ echo '<article class="event-entry">
 
 <!--    DELETE/EDIT EVENT>>> -->
 <!-- Vérif si loggué comme admin ou créateur de l'évent -->
-<?php if ($_SESSION['username'] == 'admin') {
+<?php if (isset($_SESSION['username']) and $_SESSION['username'] == 'admin') {
     echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
     <input type="submit" value="Edit Event as Admin" />

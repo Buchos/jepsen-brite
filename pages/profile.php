@@ -23,7 +23,7 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
     <p>E-mail = <?php echo $userinfo['mail']; ?></p>
     <br />
     <?php
-    if ($_SESSION['username'] == 'admin') {
+    if (isset($_SESSION['username']) and $_SESSION['username'] == 'admin') {
         echo '<br />
     <a href="logout.php">LOG OUT</>';
     } elseif (isset($_SESSION['id']) and $userinfo['id'] == $_SESSION['id'] and ($_SESSION['username'] != 'admin')) {

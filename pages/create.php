@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <td>
-                    Image URL :
+                    Image / Video URL :
                 </td>
                 <td>
                     <input type="text" name="image" value="" /> <br/>

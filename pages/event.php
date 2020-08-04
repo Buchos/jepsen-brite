@@ -39,10 +39,10 @@ echo '<article class="event-entry">
 <?php if ($_SESSION['username'] == 'admin') {
     echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
-    <input type="submit" value="Edit Event" />
+    <input type="submit" value="Edit Event as Admin" />
 </form> <br>' . '<form action="deleteevent.php" method="POST">
         <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
-        <input type="submit" value="Delete Event" />
+        <input type="submit" value="Delete Event as Admin" />
     </form>';
 } elseif (isset($_SESSION['id']) and ($_SESSION['id'] == $eventAuthor)) {
     echo '<form action="editevent.php" method="POST">

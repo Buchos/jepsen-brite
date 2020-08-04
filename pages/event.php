@@ -40,7 +40,7 @@ echo '<article class="event-entry">
     echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
     <input type="submit" value="Edit Event" />
-</form>' . '<form action="deleteevent.php" method="POST">
+</form> <br>' . '<form action="deleteevent.php" method="POST">
         <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
         <input type="submit" value="Delete Event" />
     </form>';
@@ -48,7 +48,7 @@ echo '<article class="event-entry">
     echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
     <input type="submit" value="Edit Event" />
-</form>' . '<form action="deleteevent.php" method="POST">
+</form> <br>' . '<form action="deleteevent.php" method="POST">
         <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
         <input type="submit" value="Delete Event" />
     </form>';
@@ -93,7 +93,7 @@ while ($data2 = $comments->fetch()) {
         <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
         <input type="submit" value="Delete Comment as Admin" />
     </form>
-    <br><br>';
+    <br>';
         } ?>
 <?php
     }

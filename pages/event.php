@@ -27,9 +27,10 @@ echo '<article class="event-entry">
     <h3 class="event-title">' . $data['title'] . '</h3>
     <p class="event-date">' . $data['date'] .'</p>
     <p class="event-author"> Organized by ' . $username . '</p>
-    <iframe width="500" height="315" src="' . $data["image"] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <p class="event-description">' . $description . '</p>';
-?>
+    <iframe width="500" height="282" src="' . $data["image"] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p class="event-description">' . $description . '</p>
+    <iframe src="https://www.google.com/maps?q=<?=' . $data['adresse'] . ' ' . $data['codepostal'] . ' ' . $data['ville'] . '&output=embed" width="500" height="375" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe><br>'
+    ?>
         
 
 
@@ -37,29 +38,29 @@ echo '<article class="event-entry">
 <!--    DELETE/EDIT EVENT>>> -->
 <!-- Vérif si loggué comme admin ou créateur de l'évent -->
 <?php if (isset($_SESSION['username']) and $_SESSION['username'] == 'admin') {
-    echo '<form action="editevent.php" method="POST">
+        echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
     <input type="submit" value="Edit Event as Admin" />
 </form> <br>' . '<form action="deleteevent.php" method="POST">
         <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
         <input type="submit" value="Delete Event as Admin" />
     </form>';
-} elseif (isset($_SESSION['id']) and ($_SESSION['id'] == $eventAuthor)) {
-    echo '<form action="editevent.php" method="POST">
+    } elseif (isset($_SESSION['id']) and ($_SESSION['id'] == $eventAuthor)) {
+        echo '<form action="editevent.php" method="POST">
     <input class="hidden" type="number" name="edit_id" value="' . $_GET['id'] . '" />
     <input type="submit" value="Edit Event" />
 </form> <br>' . '<form action="deleteevent.php" method="POST">
         <input class="hidden" type="number" name="delete_id" value="' . $_GET['id'] . '" />
         <input type="submit" value="Delete Event" />
     </form>';
-}?>
+    }?>
 
 
 </article>
 
 <!--    ADD COMMENT>>> -->
 <?php if (isset($_SESSION['id'])) {
-    $user = $_SESSION['id']; ?>
+        $user = $_SESSION['id']; ?>
 <div>
     <h2>Leave a comment</h2>
     <form action="addcomment.php" method="POST">
@@ -70,7 +71,7 @@ echo '<article class="event-entry">
     </form>
 </div>
 <?php
-}; ?>
+    }; ?>
 
 <!-- COMMENTS>>> -->
 <div>

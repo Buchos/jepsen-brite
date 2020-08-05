@@ -9,7 +9,7 @@ try {
     die('Erreur : ' . $e->getMessage());
 };
 
-$require = $bdd->prepare('INSERT INTO events(title, username, date, time, image , description, category) VALUES(:title, :username, :date, :time, :image , :description, :category)');
+$require = $bdd->prepare('INSERT INTO events(title, username, date, time, image , description, adresse, codepostal, ville, category) VALUES(:title, :username, :date, :time, :image , :description, :adresse, :codepostal, :ville, :category)');
 $require->execute(array(
     'title' => $_POST['title'],
     'username' => $_SESSION['id'],
@@ -17,6 +17,9 @@ $require->execute(array(
     'time' => $_POST['time'],
     'image' => $_POST['image'],
     'description' => $_POST['description'],
+    'adresse' => $_POST['adresse'],
+    'codepostal' => $_POST['codepostal'],
+    'ville' => $_POST['ville'],
     'category' =>  $_POST['category']
 ));
 

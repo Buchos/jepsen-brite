@@ -65,6 +65,30 @@
             </tr>
             <tr>
                 <td>
+                    Adress :
+                </td>
+                <td>
+                    <input type="text" name="adresse" /> <br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Postal Code :
+                </td>
+                <td>
+                    <input type="text" name="codepostal" /> <br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Town :
+                </td>
+                <td>
+                    <input type="text" name="ville" /> <br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     Category :
                 </td>
                 <td>

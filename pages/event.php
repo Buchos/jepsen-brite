@@ -31,23 +31,38 @@ echo '<article class="event-entry">
 	<p class="event-description">' . $description . '</p>';
 
 	// PARTICIPER A L'EVENEMENT >>>
+	// Affichage du bouton pour participer uniquement si l'utilisateur est connecté
 	if (isset($_SESSION['id']))
 	{
 		echo
 			"<form method='POST'>
-				<input type='submit' name='participants' value='Je participe !'>
+				<input type='submit' name='participation' value='Je participe !'>
 			</form>"
 		;
 
-		if(isset($_POST['participants']))
+		// En appuyant sur le bouton, vérification si l'utilisateur participe déjà, sinon inscription de la participation dans la base de données
+		if(isset($_POST['participation']))
 		{
-			$participants = $_SESSION['username'];
+			$participant = $_SESSION['id'];
 			$event_id = $_GET['id'];
 
-			$insert_participant = $bdd -> prepare('UPDATE events SET participants = ? WHERE id = ?');
-			$insert_participant -> execute(array($participants, $event_id));
+			$prepare_checking = $bdd -> prepare('SELECT COUNT(*) AS count FROM participants WHERE user = ? AND event = ?');
+			$prepare_checking -> execute(array($participant, $event_id));
+			$row = $prepare_checking -> fetch();
+			$entry = $row['count'];
+			var_dump($entry);	
+			
+			if ($entry == 0)
+			{
+				$insert_participant = $bdd -> prepare('INSERT INTO participants(user, event) VALUES (?, ?)');
+				$insert_participant -> execute(array($participant, $event_id));
+				echo "Votre participation a été prise en compte !";
+			}
 
-			echo "Votre participation a été prise en compte !";
+			else
+			{
+				echo "Vous participez déjà à cet événement !";
+			}
 		}
 	}
 	// <<< PARTICIPER A L'EVENEMENT
@@ -69,6 +84,32 @@ echo '<article class="event-entry">
 <!--    <<<DELETE EDIT EVENT -->
 
 </article>
+
+<!-- DISPLAY PARTICIPANTS >>> -->
+<?php
+	// Requête pour récupérer les participants d'un événement et les afficher
+	$getting_participants = $bdd -> prepare('SELECT username FROM participants, users WHERE event = ? AND user = users.id');
+	$getting_participants -> execute(array($_GET['id']));
+?>
+
+<div>
+	<h2>
+		Participants
+	</h2>
+
+	<div>
+		<?php
+			while ($display_participants = $getting_participants -> fetch(PDO::FETCH_ASSOC))
+			{
+				foreach ($display_participants as $one_participant)
+				{
+					echo $one_participant.'<br>';
+				}
+			}
+		?>
+	</div>
+</div>
+<!-- <<< DISPLAY PARTICIPANTS -->
 
 <!--    ADD COMMENT>>> -->
 <?php if (isset($_SESSION['id'])) {

@@ -50,7 +50,6 @@ echo '<article class="event-entry">
 			$prepare_checking -> execute(array($participant, $event_id));
 			$row = $prepare_checking -> fetch();
 			$entry = $row['count'];
-			var_dump($entry);	
 			
 			if ($entry == 0)
 			{
@@ -58,7 +57,6 @@ echo '<article class="event-entry">
 				$insert_participant -> execute(array($participant, $event_id));
 				echo "Votre participation a été prise en compte !";
 			}
-
 			else
 			{
 				echo "Vous participez déjà à cet événement !";

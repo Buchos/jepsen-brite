@@ -48,11 +48,11 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    Image / Video URL :
+                <td style="overflow: auto; height: 80px; width: 200px;">
+                    Image / Video URL (if a video copy the link after youtube.com/watch?v=) :
                 </td>
                 <td>
-                    <input type="text" name="image" value="" /> <br/>
+                    <input type="text" name="image" value="https://www.youtube.com/embed/" /> <br/>
                 </td>
             </tr>
             <tr>

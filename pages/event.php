@@ -27,9 +27,9 @@ echo '<article class="event-entry">
     <h3 class="event-title">' . $data['title'] . '</h3>
     <p class="event-date">' . $data['date'] .'</p>
     <p class="event-author"> Organized by ' . $username . '</p>
-    <iframe width="500" height="282" src="' . $data["image"] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="500" height="339" src="' . $data["image"] . '" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <p class="event-description">' . $description . '</p>
-    <iframe src="https://www.google.com/maps?q=<?=' . $data['adresse'] . ' ' . $data['codepostal'] . ' ' . $data['ville'] . '&output=embed" width="500" height="375" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe><br>'
+    <iframe src="https://www.google.com/maps?q=<?=' . $data['adresse'] . ' ' . $data['codepostal'] . ' ' . $data['ville'] . '&output=embed" width="500" height="376" frameborder="1" style="border:1;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe><br>'
     ?>
         
 

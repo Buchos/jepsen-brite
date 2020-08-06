@@ -19,7 +19,7 @@
             <input type="date" name="date" value="<?php echo($data['date']) ?>"> <br>
             Hour
             <input type="time" name="time" value="<?php echo($data['time']) ?>"> <br>
-            Image
+            Image / Video URL (for youtube copy link from "share" submenu) :
             <input type="text" name="image" value="<?php echo($data['image']) ?>"> <br>
             Description
             <input type="text" name="description" value="<?php echo($data['description']) ?>"> <br>

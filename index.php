@@ -21,7 +21,7 @@ while ($data = $response->fetch()) {
             <h3 class="event-title">' . $data['title'] . '</h3>
             <div class="ev-d-a"><p class="event-date">' . $data['date'] .'</p>
             <p class="event-author"> - Organized by ' . $username . '</p></div>
-            <iframe width="640" height="360" src="' . $data["image"] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="500" height="339" src="' . $data["image"] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p class="event-description">' . $description . '</p>
             <a href="pages/event.php?id=' . $data['id'] . '">View</a>
         </article>';

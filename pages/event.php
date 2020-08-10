@@ -96,15 +96,20 @@ echo '<article class="event-entry">
 	</h2>
 
 	<div>
-		<?php
-			while ($display_participants = $getting_participants -> fetch(PDO::FETCH_ASSOC))
-			{
-				foreach ($display_participants as $one_participant)
+		<ul>
+			<?php
+				while ($display_participants = $getting_participants -> fetch(PDO::FETCH_ASSOC))
 				{
-					echo $one_participant.'<br>';
+					foreach ($display_participants as $one_participant)
+					{
+						echo
+							'<li>'.$one_participant.'</li>
+							<br>'
+						;
+					}
 				}
-			}
-		?>
+			?>
+		</ul>
 	</div>
 </div>
 <!-- <<< DISPLAY PARTICIPANTS -->

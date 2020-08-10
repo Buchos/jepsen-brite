@@ -15,104 +15,140 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
 	$grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . "&s=" . $size;
 ?>
 
-<div>
-	<figure>
-		<img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
-	</figure>
-	
-	<h2>
-		<?php echo $userinfo['username']; ?>
-	</h2>
-	
-	<p>
-		username = <?php echo $userinfo['username']; ?>
-	</p>
-	
-	<p>
-		E-mail = <?php echo $userinfo['mail']; ?>
-	</p>
-	
-	<?php if (isset($_SESSION['id']) and $userinfo['id'] == $_SESSION['id']) { ?>
-	
-	<p>
-		<a href="editprofile.php">Edit profile</a>
-	</p>
-	<p>
-		<a href="logout.php">LOG OUT</a>
-	</p>
-	
-	<form action="deleteuser.php" method="post">
-		<input type="submit" value="SUPPRIMER VOTRE PROFIL" />
-	</form>
-	
-	<?php }; ?>
-</div>
-
-<div>
-	<?php
-		$current_date = new DateTime();
-		$get_events = $bdd -> prepare('SELECT title FROM participants, events WHERE user = ? AND event = events.id');
-		$get_events -> execute(array($_SESSION['id']));
-	?>
-	
+<div style="display: grid; grid-template-columns: 1fr 1fr; margin: auto; text-align: left;">
 	<div>
-		Vous êtes inscrits aux événements à venir suivants :
+		<img class="gravatar" src="<?php echo $grav_url; ?>" alt="" />
+	
+		<h2>
+			<?php echo $userinfo['username']; ?>
+		</h2>
+	
+		<p>
+			username = <?php echo $userinfo['username']; ?>
+		</p>
+	
+		<p>
+			E-mail = <?php echo $userinfo['mail']; ?>
+		</p>
+	
 		<?php
-			while ($events_results = $get_events -> fetch(PDO::FETCH_ASSOC))
+			if (isset($_SESSION['id']) and $userinfo['id'] == $_SESSION['id'])
 			{
-				foreach ($events_results as $one_event)
-				{
-					if ($one_event < $current_date)
-					{
-						echo "<li>".$one_event."</li>";
-					}
-				}
-			}
+		?>
+	
+		<p>
+			<a href="editprofile.php">Edit profile</a>
+		</p>
+		<p>
+			<a href="logout.php">LOG OUT</a>
+		</p>
+	
+		<form action="deleteuser.php" method="post">
+			<input type="submit" value="SUPPRIMER VOTRE PROFIL" />
+		</form>
+		<?php
+			};
 		?>
 	</div>
-	
+
 	<div>
-		Vous avez participé aux événements passés suivants :
-		<ul>
-			<?php
-				while ($events_results = $get_events -> fetch(PDO::FETCH_ASSOC))
-				{
-					foreach ($events_results as $one_event)
+		<div style="text-align: left;">
+			Vous êtes inscrits aux événements à venir suivants :
+			<ul>
+				<?php
+					$rows = $bdd -> prepare('SELECT COUNT(*) FROM participants, events WHERE user = ? AND event = events.id AND deleted = 0 AND date >= NOW()');
+					$rows -> execute(array($_SESSION['id']));
+
+					if ($rows -> fetchColumn() > 0)
 					{
-						if ($one_event > $current_date)
+						$get_future_events = $bdd -> prepare('SELECT events.id, title, date FROM participants, events WHERE user = ? AND event = events.id AND deleted = 0 AND date >= NOW() ORDER BY date ASC');
+						$get_future_events -> execute(array($_SESSION['id']));
+					
+						while (($future_events_results = $get_future_events -> fetch(PDO::FETCH_ASSOC)) !== false)
 						{
-							echo "<li>".$one_event."</li>";
+							echo
+								'<li>
+									<a href="event.php?id='.$future_events_results['id'].'">'.$future_events_results['title'].'</a>
+								</li>'
+							;
 						}
 					}
-				}
-			?>
-		</ul>
+					else
+					{
+						echo
+							'Vous n\'êtes inscrit à aucun événement à venir.
+							<br>
+							Jetez un oeil sur notre <a href=\'../index.php\'>calendrier des événements</a>.'
+						;
+					}
+				?>
+			</ul>
+		</div>
+
+		<div style="text-align: left;">
+			Vous avez participé aux événements passés suivants :
+			<ul>
+				<?php
+					$rows = $bdd -> prepare('SELECT COUNT(*) FROM participants, events WHERE user = ? AND event = events.id AND deleted = 0 AND date < NOW()');
+					$rows -> execute(array($_SESSION['id']));
+
+					if ($rows -> fetchColumn() > 0)
+					{
+						$get_past_events = $bdd -> prepare('SELECT events.id, title, date FROM participants, events WHERE user = ? AND event = events.id AND deleted = 0 AND date < NOW() ORDER BY date DESC');
+						$get_past_events -> execute(array($_SESSION['id']));
+
+						while (($past_events_results = $get_past_events -> fetch(PDO::FETCH_ASSOC)) !== false)
+						{
+							echo
+								'<li>
+									<a href="event.php?id='.$past_events_results['id'].'">'.$past_events_results['title'].'</a>
+								</li>'
+							;
+						}
+					}
+					else
+					{
+						echo
+							'Vous n\'avez participé à aucun événement dans le passé.'
+						;
+					}
+				?>
+			</ul>
+		</div>
+	
+		<div style="text-align: left;">
+			Vous avez créé les événements suivants :
+			<ul>
+				<?php
+					$rows = $bdd -> prepare('SELECT COUNT(*) FROM events WHERE username = ? AND deleted = 0');
+					$rows -> execute(array($_SESSION['id']));
+
+					if ($rows -> fetchColumn() > 0)
+					{
+						$get_created_events = $bdd -> prepare('SELECT id, title FROM events WHERE username = ? AND deleted = 0 ORDER BY date ASC');
+						$get_created_events -> execute(array($_SESSION['id']));
+
+						while ($created_events_results = $get_created_events -> fetch(PDO::FETCH_ASSOC))
+						{
+							echo
+								'<li>
+									<a href="event.php?id='.$created_events_results['id'].'">'.$created_events_results['title'].'</a>
+								</li>'
+							;
+						}
+					}
+					else
+					{
+						echo
+							'Vous n\'avez encore créé aucun événement.
+							<br>
+							<a href=\'create.php\'>Lancez-vous !</a>'
+						;
+					}
+				?>
+			</ul>
+		</div>
 	</div>
-</div>
-
-<div>
-	Vous avez créé les événements suivants :
-	<?php
-		try
-		{
-			$get_created_event = $bdd -> prepare('SELECT title FROM events, users WHERE events.username = ? AND events.username = users.id');
-			$get_created_event -> execute(array($_SESSION['id']));
-			$created = $get_created_event -> fetch(PDO::FETCH_ASSOC);
-		}
-		catch (Exception $e)
-		{
-			echo "Error :".$e -> getMessage();
-		}
-	?>
-
-	<ul>
-		<?php
-			foreach ($created as $event_created)
-			{
-				echo "<li>".$event_created."</li>";
-			}
-		?>
-	</ul>
 </div>
 
 <?php

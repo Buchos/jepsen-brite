@@ -23,12 +23,14 @@ $username = $rawusername['username'];
 $description = $Parsedown->text($data['description']);
 $eventAuthor = $data['username'];
 echo '<article class="event-entry">
-	<p class="event-cat">'. $data['category'] .'</p>
-	<h3 class="event-title">' . $data['title'] . '</h3>
-	<p class="event-date">' . $data['date'] .'</p>
-	<p class="event-author"> Organized by ' . $username . '</p>
-	<img class="ev-img" src="' . $data['image'] . '" alt="Image not found">
-	<p class="event-description">' . $description . '</p>';
+    <p class="event-cat">'. $data['category'] .'</p>
+    <h3 class="event-title">' . $data['title'] . '</h3>
+    <p class="event-date">' . $data['date'] .'</p>
+    <p class="event-author"> Organized by ' . $username . '</p>
+    <iframe width="500" height="339" src="' . $data["image"] . '" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p class="event-description">' . $description . '</p>
+    <iframe src="https://www.google.com/maps?q=<?=' . $data['adresse'] . ' ' . $data['codepostal'] . ' ' . $data['ville'] . '&output=embed" width="500" height="376" frameborder="1" style="border:1;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe><br>'
+    ;
 
     // PARTICIPER A L'EVENEMENT >>>
     // Affichage du bouton pour participer uniquement si l'utilisateur est connecté

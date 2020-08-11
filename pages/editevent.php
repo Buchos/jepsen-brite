@@ -2,6 +2,16 @@
 <?php $page_title = 'Categories' ?>
 <?php require(PHP . '/header.php') ?>
 <?php require(PHP . '/nav.php')?>
+<?php
+// PHP Mailer, send mails
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/phpmailer/phpmailer/src/Exception.php';
+require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+$mail = new PHPMailer();
+?>
 
 <?php if (isset($_SESSION['id'])) {
     if (isset($_POST['edit_id'])) {
@@ -41,6 +51,32 @@
             <input type="submit" value="Update Event">
         </form>
         <?php
+
+
+
+
+// Send mail after modification
+
+$mail->IsSMTP();
+        $mail->Mailer = "smtp";
+        //$mail->SMTPDebug  = 1;
+        $mail->SMTPAuth   = true;
+        $mail->SMTPSecure = "tls";
+        $mail->Port       = 587;
+        $mail->Host       = "smtp.gmail.com";
+        $mail->Username   = "bryanrasamizafy98@gmail.com";
+        $mail->Password   = "apzoeiruty135";
+
+        $mail->IsHTML(true);
+        $mail->AddAddress($_SESSION['mail'], $_SESSION['username']);
+        $mail->SetFrom("bryanrasamizafy98@gmail.com", "JEPSEN-BRITE");
+        $mail->AddReplyTo("rasamizafybryan98@gmail.com", "J-B's community manager");
+        $mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
+        $mail->Subject = "You edited your event successfully";
+        $content = "<b>Thank you for registering on our website !</b>";
+
+        $mail->MsgHTML($content);
+        $mail->send();
     } else {
         header('Location: ../index.php');
     }

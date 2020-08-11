@@ -1,2 +1,4 @@
 .vscode/sendgrid.env
 sendgrid.env
+.unotes/unotes_meta.json
+.vscode/launch.json

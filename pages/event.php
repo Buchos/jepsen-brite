@@ -39,7 +39,8 @@ echo '<article class="event-entry">
             "<form method='POST'>
 				<input type='submit' name='participation' value='Je participe !'>
 				<br>
-			</form>"
+			</form>
+			<br>"
         ;
 
         // En appuyant sur le bouton, vérification si l'utilisateur participe déjà, sinon inscription de la participation dans la base de données

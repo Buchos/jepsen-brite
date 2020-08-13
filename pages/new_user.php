@@ -142,3 +142,4 @@ if (isset($_POST['forminscription'])) {
 </div>
 
 <?php require('../assets/php/footer.php');
+?>

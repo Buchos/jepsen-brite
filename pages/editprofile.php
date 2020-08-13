@@ -1,28 +1,27 @@
 <?php require_once('../assets/php/initialize.php') ?>
 <?php
 if (isset($_SESSION['id'])) {
-   $requser = $bdd->prepare("SELECT * FROM users WHERE id = ?");
-   $requser->execute(array($_SESSION['id']));
-   $user = $requser->fetch();
-   if(isset($_POST['newusername']) AND !empty($_POST['newusername']) AND $_POST['newusername'] != $user['username']) {
-      $newusername = htmlspecialchars($_POST['newusername']);
-      $insertusername = $bdd->prepare("UPDATE users SET username = ? WHERE id = ?");
-      $insertusername->execute(array($newusername, $_SESSION['id']));
-      header('Location: profile.php?id='.$_SESSION['id']);
-   }
+    $requser = $bdd->prepare("SELECT * FROM users WHERE id = ?");
+    $requser->execute(array($_SESSION['id']));
+    $user = $requser->fetch();
+    if (isset($_POST['newusername']) and !empty($_POST['newusername']) and $_POST['newusername'] != $user['username']) {
+        $newusername = htmlspecialchars($_POST['newusername']);
+        $insertusername = $bdd->prepare("UPDATE users SET username = ? WHERE id = ?");
+        $insertusername->execute(array($newusername, $_SESSION['id']));
+        header('Location: profile.php?id='.$_SESSION['id']);
+    }
    
-   if(isset($_POST['newpassword1']) AND !empty($_POST['newpassword1']) AND isset($_POST['newpassword2']) AND !empty($_POST['newpassword2'])) {
-      $password1 = sha1($_POST['newpassword1']);
-      $password2 = sha1($_POST['newpassword2']);
-      if($password1 == $password2) {
-         $insertmdp = $bdd->prepare("UPDATE users SET password = ? WHERE id = ?");
-         $insertmdp->execute(array($password1, $_SESSION['id']));
-         header('Location: profile.php?id='.$_SESSION['id']);
-      } else {
-         $msg = "Vos deux mdp ne correspondent pas !";
-      }
-   }
-?>
+    if (isset($_POST['newpassword1']) and !empty($_POST['newpassword1']) and isset($_POST['newpassword2']) and !empty($_POST['newpassword2'])) {
+        $password1 = sha1($_POST['newpassword1']);
+        $password2 = sha1($_POST['newpassword2']);
+        if ($password1 == $password2) {
+            $insertmdp = $bdd->prepare("UPDATE users SET password = ? WHERE id = ?");
+            $insertmdp->execute(array($password1, $_SESSION['id']));
+            header('Location: profile.php?id='.$_SESSION['id']);
+        } else {
+            $msg = "Vos deux mdp ne correspondent pas !";
+        }
+    } ?>
 <?php $page_title = 'Edit Your Profile' ?>
 <?php require('../assets/php/header.php') ?>
 <?php require('../assets/php/nav.php')?>
@@ -41,13 +40,14 @@ if (isset($_SESSION['id'])) {
                <input type="password" name="newpassword2" placeholder="Confirmation du mot de passe" /><br /><br />
                <input type="submit" value="Mettre à jour mon profil !" />
             </form>
-            <?php if(isset($msg)) { echo $msg; } ?>
+            <?php if (isset($msg)) {
+        echo $msg;
+    } ?>
          </div>
       </div>
-      <?php require('../assets/php/footer.php');?>
-<?php   
-}
-else {
-   header("Location: login.php");
+      <?php require('../assets/php/footer.php'); ?>
+<?php
+} else {
+    header("Location: login.php");
 }
 ?>

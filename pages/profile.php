@@ -136,4 +136,4 @@ if (isset($_SESSION['id']) and $_SESSION['id'] > 0) {
 <?php
 } ?>
 
-<?php require('../assets/php/footer.php');?>
+<?php require('../assets/php/footer.php');?> 
